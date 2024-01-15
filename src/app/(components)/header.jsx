@@ -1,0 +1,22 @@
+"use client"
+import Link from 'next/link'
+import React from 'react'
+import { Button } from '@/components/ui/button'
+import { ModeToggle } from './ui/modetoggle'
+
+
+const Header = () => {
+  return (
+    <header
+    className='w-full border-b border-muted'
+    >
+      <nav
+      className='relative flex justify-end items-center mx-auto px-2 py-5 max-w-6xl'
+      >
+        <ModeToggle />
+      </nav>
+    </header>
+  )
+}
+
+export default Header
