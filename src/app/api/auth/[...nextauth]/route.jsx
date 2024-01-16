@@ -36,6 +36,7 @@ export const handler = NextAuth({
       if (sessionUser) {
         session.user.id = sessionUser._id.toString(),
         session.user.username = sessionUser.username
+        session.user.image = sessionUser.avatar
         return session;
       }
     }
