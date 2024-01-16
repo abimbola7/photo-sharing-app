@@ -28,7 +28,7 @@ const UserDropdown = () => {
         <Button variant="outline" size="icon"><FaUserCircle className='text-xl'/></Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <Link href="/products">
+        <Link href="/auth/signin">
           <DropdownMenuItem className="cursor-pointer py-1 focus:border-none hover:border-none hover:bg-accent">Login</DropdownMenuItem>
         </Link>
         <Link href="/register">

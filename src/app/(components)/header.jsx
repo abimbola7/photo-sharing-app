@@ -19,9 +19,6 @@ const Header = () => {
       className='relative flex justify-end items-center mx-auto px-2 py-5 max-w-6xl space-x-3'
       >
         <UserDropdown />
-        {/* <div className='flex flex-row rounded-full p-3 cursor-pointer bg-slate-950'>
-          <FaUserCircle className='text-xl'/>
-        </div> */}
         <ModeToggle />
       </nav>
     </header>

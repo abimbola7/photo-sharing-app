@@ -1,10 +1,14 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from "yup"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { CiCamera } from "react-icons/ci";
+import { storage } from '../../../../firebase'
+import { getDownloadURL, ref, uploadString } from 'firebase/storage'
+import { Button } from '@/components/ui/button'
+import { v4 as uuidv4 } from 'uuid';
 
 const passwordValidator = (message) => {
   return `Your password must have at least 1 ${message} character.`
@@ -29,26 +33,86 @@ const SignupSchema = Yup.object().shape({
 
 
 const RegisterForm = () => {
-  const filePickerRef = React.useRef(null)
+  const filePickerRef = React.useRef(null);
+  const [ selectedFile, setSelectedFile ] = React.useState(null);
+  const [ loading, setLoading ] = React.useState(false)
+  const [ avatarUrl, setAvatarUrl ] = React.useState(null)
   const router = useRouter();
   const [ error, setError ] = React.useState(null)
-  console.log(error)
-  return (
+  const addImageToPost = (e) => {
+    console.log(e.target.files[0])
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    reader.onload = (readerEvent) => {
+      setSelectedFile(readerEvent.target.result)
+
+    }
+  }
+
+  const uploadToFirebase = async () => { 
+    if (loading) return;
+    setLoading(true);
+    // let randomStr = uuidv4
+    const imageRef = ref(storage, `avatars/${uuidv4()}/images`);
+      
+    await uploadString(imageRef, selectedFile, "data_url").then(async snapshot => {
+      const downloadURL = await getDownloadURL(imageRef);
+      console.log(downloadURL)
+      setAvatarUrl(downloadURL)
+      })
+      setLoading(false);
+  }
+
+  return ( 
     <div className='mx-auto w-[40rem] max-w-[90%] mt-10'>
-      <h1 className='mb-5 text-5xl text-center uppercase'>Sign Up</h1>
-      <div className='flex justify-center items-center'>
-        <div onClick={()=>filePickerRef.current.click()} className='rounded-full p-2 bg-secondary cursor-pointer'>
-          <CiCamera className='text-4xl' />
-        </div>
-        <div className="mt-2">
-          <input
-            type="file"
-            hidden
-            ref={filePickerRef}
-            // onChange={addImageToPost}
-          />
-        </div>
-      </div>
+      <h1 className='mb-5 text-5xl text-center u)ppercase'>Sign Up</h1>
+      {
+        selectedFile ? (
+          <div className='flex justify-center items-center'>
+            <div className='w-fit relative group overflow-hidden'>
+              <div className="absolute w-full h-full hidden group-hover:flex items-center justify-center z-[10000] pointer-events-none text-center text-sm text-red-500">
+                Tap to remove image
+              </div>
+              {
+                loading && (
+                  <div className="absolute w-full h-full flex items-center justify-center z-[10000] pointer-events-none text-center text-sm text-red-500">
+                    <img src="/loader.svg"/>
+                  </div>
+                )
+              }
+
+              <img 
+              onClick={()=>setSelectedFile(null)}
+              src={selectedFile} 
+              alt="" 
+              className='w-32 h-32 rounded-full object-contain cursor-pointer group-hover:scale-110 transition-transform duration-300 object-cover object-center brightness-100 hover:brightness-50'
+              />
+            </div>
+            <Button 
+            onClick={uploadToFirebase}
+            className="ml-2 bg-destructive text-primary hover:bg-none">
+              Click to verify image
+            </Button>
+          </div>
+        ) : (
+          <div className='flex justify-center items-center'>
+            <div onClick={()=>filePickerRef.current.click()} className='rounded-full p-2 bg-secondary cursor-pointer'>
+              <CiCamera className='text-4xl' />
+            </div>
+            <div className="mt-2">
+              <input
+                type="file"
+                hidden
+                ref={filePickerRef}
+                onChange={addImageToPost}
+              />
+            </div>
+          </div>
+        )
+      }
       <Formik
       initialValues={{
         username : "",
@@ -89,6 +153,7 @@ const RegisterForm = () => {
               "Content-Type" : "application/json"
             },
             body : JSON.stringify({
+              avatar : avatarUrl,
               username : values.username,
               email : values.email,
               password : values.password
@@ -96,7 +161,7 @@ const RegisterForm = () => {
           })
           if (res.ok) {
             console.log("okay")
-            // router.replace("/auth/signin") 
+            // router.replace("/auth/signin"') 
           }
         } catch(err) {
           console.error(err, "PROBLEM FROM REGISTER")
@@ -130,7 +195,7 @@ const RegisterForm = () => {
           {
             error && <p className='text-red-500'>{ error }</p>
           }
-           <button type="submit" disabled={isSubmitting}  className='w-full py-2 mt-2 text-center text-white bg-destructive rounded-md focus:outline-none disabled:bg-green-300'>Submit</button>
+           <button type="submit" disabled={isSubmitting}  className='w-full py-2 mt-2 text-center text-white bg-destructive rounded-md focus:outline-none disabled:bg-destructive/50'>Submit</button>
            <p className='tect-center'>
             Already have an account? <Link href={"/auth/signin"} className='text-green-500'>Login</Link>
            </p>

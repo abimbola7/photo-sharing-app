@@ -68,7 +68,7 @@ const LoginForm = () => {
               {
                 error && <p className="text-red-500">{error}</p>
               }
-              <button type="submit" disabled={isSubmitting}  className='w-full text-center bg-green-600 py-2 text-white mt-2 rounded-md focus:outline-none disabled:bg-green-300'>Submit</button>
+              <button type="submit" disabled={isSubmitting}  className='w-full py-2 mt-2 text-center text-white bg-destructive rounded-md focus:outline-none disabled:bg-destructive/50'>Submit</button>
             </Form>
           )
         }
