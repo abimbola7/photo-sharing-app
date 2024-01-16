@@ -5,9 +5,12 @@ import { Button } from '@/components/ui/button'
 import { ModeToggle } from './ui/modetoggle'
 import { FaUserCircle } from "react-icons/fa";
 import UserDropdown from './userdropdown'
+import { useSession } from 'next-auth/react'
 
 
 const Header = () => {
+  const { data } = useSession()
+  console.log(data);
   return (
     <header
     className='w-full border-b border-muted'

@@ -2,7 +2,10 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from './(components)/ui/theme-provider'
 import Header from './(components)/header'
+import { AuthProvider } from './(providers)/authProvider';
+
 const inter = Inter({ subsets: ['latin'] })
+
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,15 +18,17 @@ export default function RootLayout({ children }) {
       <body 
       className={`${inter.className}`}
       >
-        <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-        > 
-          <Header />
-          {children}
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          > 
+            <Header />
+            {children}
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   )

@@ -4,6 +4,7 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from "yup"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { CiCamera } from "react-icons/ci";
 
 const passwordValidator = (message) => {
   return `Your password must have at least 1 ${message} character.`
@@ -28,12 +29,26 @@ const SignupSchema = Yup.object().shape({
 
 
 const RegisterForm = () => {
+  const filePickerRef = React.useRef(null)
   const router = useRouter();
   const [ error, setError ] = React.useState(null)
   console.log(error)
   return (
     <div className='mx-auto w-[40rem] max-w-[90%] mt-10'>
       <h1 className='mb-5 text-5xl text-center uppercase'>Sign Up</h1>
+      <div className='flex justify-center items-center'>
+        <div onClick={()=>filePickerRef.current.click()} className='rounded-full p-2 bg-secondary cursor-pointer'>
+          <CiCamera className='text-4xl' />
+        </div>
+        <div className="mt-2">
+          <input
+            type="file"
+            hidden
+            ref={filePickerRef}
+            // onChange={addImageToPost}
+          />
+        </div>
+      </div>
       <Formik
       initialValues={{
         username : "",
@@ -67,25 +82,25 @@ const RegisterForm = () => {
           console.log(error, "registerform")
         }
 
-        // try {
-        //   const res  = await fetch("/api/register", {
-        //     method : "POST",
-        //     headers : {
-        //       "Content-Type" : "application/json"
-        //     },
-        //     body : JSON.stringify({
-        //       username : values.username,
-        //       email : values.email,
-        //       password : values.password
-        //     })
-        //   })
-        //   if (res.ok) {
-        //     console.log("okay")
-        //     // router.replace("/auth/signin") 
-        //   }
-        // } catch(err) {
-        //   console.error(err, "PROBLEM FROM REGISTER")
-        // }
+        try {
+          const res  = await fetch("/api/register", {
+            method : "POST",
+            headers : {
+              "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({
+              username : values.username,
+              email : values.email,
+              password : values.password
+            })
+          })
+          if (res.ok) {
+            console.log("okay")
+            // router.replace("/auth/signin") 
+          }
+        } catch(err) {
+          console.error(err, "PROBLEM FROM REGISTER")
+        }
       }}
       >
         {({ errors, touched, isSubmitting, values }) => (
