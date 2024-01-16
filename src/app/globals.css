@@ -66,3 +66,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .forms {
+    @apply w-full py-3 focus:outline-none border px-3 rounded-md bg-gray-50 dark:text-gray-500
+  }
+}
