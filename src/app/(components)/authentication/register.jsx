@@ -52,20 +52,6 @@ const RegisterForm = () => {
     }
   }
 
-  const uploadToFirebase = async () => { 
-    if (loading) return;
-    setLoading(true);
-    // let randomStr = uuidv4
-    const imageRef = ref(storage, `avatars/${uuidv4()}/images`);
-      
-    await uploadString(imageRef, selectedFile, "data_url").then(async snapshot => {
-      const downloadURL = await getDownloadURL(imageRef);
-      console.log(downloadURL)
-      setAvatarUrl(downloadURL)
-      })
-      setLoading(false);
-  }
-
   return ( 
     <div className='mx-auto w-[40rem] max-w-[90%] mt-10'>
       <h1 className='mb-5 text-5xl text-center u)ppercase'>Sign Up</h1>
@@ -91,17 +77,20 @@ const RegisterForm = () => {
               className='w-32 h-32 rounded-full object-contain cursor-pointer group-hover:scale-110 transition-transform duration-300 object-cover object-center brightness-100 hover:brightness-50'
               />
             </div>
-            <Button 
+            {/* <Button 
             onClick={uploadToFirebase}
             className="ml-2 bg-destructive text-primary hover:bg-none">
               Click to verify image
-            </Button>
+            </Button> */}
           </div>
         ) : (
-          <div className='flex justify-center items-center'>
+          <div className='flex flex-col justify-center items-center'>
             <div onClick={()=>filePickerRef.current.click()} className='rounded-full p-2 bg-secondary cursor-pointer'>
               <CiCamera className='text-4xl' />
             </div>
+            {
+              !selectedFile && <p>Select an Image</p>
+            }
             <div className="mt-2">
               <input
                 type="file"
@@ -145,15 +134,32 @@ const RegisterForm = () => {
         } catch (error){
           console.log(error, "registerform")
         }
+        let downloadURL;
+        try {
+          if (loading) return;
+          setLoading(true);
+          const imageRef = ref(storage, `avatars/${uuidv4()}/images`);
+          await uploadString(imageRef, selectedFile, "data_url").then(async snapshot => {
+            console.log(snapshot)
+            downloadURL = await getDownloadURL(imageRef);
+            console.log(downloadURL)
+            setAvatarUrl(downloadURL)
+          })
+        } catch (error) {
+          throw new Error("Problem uploading image")
+        }     
+        
+        setLoading(false);
 
         try {
+          console.log(downloadURL)
           const res  = await fetch("/api/register", {
             method : "POST",
             headers : {
               "Content-Type" : "application/json"
             },
             body : JSON.stringify({
-              avatar : avatarUrl,
+              avatar : downloadURL,
               username : values.username,
               email : values.email,
               password : values.password
