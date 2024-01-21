@@ -69,6 +69,9 @@ body {
 
 @layer components {
   .forms {
-    @apply w-full py-3 focus:outline-none border px-3 rounded-md bg-gray-50 dark:text-gray-500
+    @apply w-full py-3 focus:outline-none border px-3 rounded-md bg-gray-50 dark:bg-accent
+  }
+  .image {
+    @apply w-full py-3 focus:outline-none border px-3 rounded-md bg-gray-50 dark:bg-accent
   }
 }

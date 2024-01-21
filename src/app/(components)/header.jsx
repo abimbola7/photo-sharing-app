@@ -6,6 +6,8 @@ import { ModeToggle } from './ui/modetoggle'
 import { FaUserCircle } from "react-icons/fa";
 import UserDropdown from './userdropdown'
 import { signOut, useSession } from 'next-auth/react'
+import { IoIosAdd } from "react-icons/io";
+import AddImage from './addimage'
 
 
 const Header = () => {
@@ -27,6 +29,7 @@ const Header = () => {
         }
         <UserDropdown />
         <ModeToggle />
+        <AddImage/>
       </nav>
     </header>
   )

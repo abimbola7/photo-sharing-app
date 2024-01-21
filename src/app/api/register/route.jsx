@@ -8,6 +8,7 @@ export async function POST(req, res) {
     await User.create(body)
     return NextResponse.json({ message : "Registration Successful" }, { status : 200 })
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ message : "Registration failed" }, { status : 500 })
   }
 }

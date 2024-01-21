@@ -57,8 +57,8 @@ const RegisterForm = () => {
       <h1 className='mb-5 text-5xl text-center u)ppercase'>Sign Up</h1>
       {
         selectedFile ? (
-          <div className='flex justify-center items-center'>
-            <div className='w-fit relative group overflow-hidden'>
+          <div className='flex items-center justify-center'>
+            <div className='relative overflow-hidden w-fit group'>
               <div className="absolute w-full h-full hidden group-hover:flex items-center justify-center z-[10000] pointer-events-none text-center text-sm text-red-500">
                 Tap to remove image
               </div>
@@ -74,7 +74,7 @@ const RegisterForm = () => {
               onClick={()=>setSelectedFile(null)}
               src={selectedFile} 
               alt="" 
-              className='w-32 h-32 rounded-full object-contain cursor-pointer group-hover:scale-110 transition-transform duration-300 object-cover object-center brightness-100 hover:brightness-50'
+              className='object-contain object-cover object-center w-32 h-32 transition-transform duration-300 rounded-full cursor-pointer group-hover:scale-110 brightness-100 hover:brightness-50'
               />
             </div>
             {/* <Button 
@@ -84,8 +84,8 @@ const RegisterForm = () => {
             </Button> */}
           </div>
         ) : (
-          <div className='flex flex-col justify-center items-center'>
-            <div onClick={()=>filePickerRef.current.click()} className='rounded-full p-2 bg-secondary cursor-pointer'>
+          <div className='flex flex-col items-center justify-center'>
+            <div onClick={()=>filePickerRef.current.click()} className='p-2 rounded-full cursor-pointer bg-secondary'>
               <CiCamera className='text-4xl' />
             </div>
             {
@@ -167,7 +167,7 @@ const RegisterForm = () => {
           })
           if (res.ok) {
             console.log("okay")
-            // router.replace("/auth/signin"') 
+            router.replace("/auth/signin") 
           }
         } catch(err) {
           console.error(err, "PROBLEM FROM REGISTER")
@@ -201,7 +201,7 @@ const RegisterForm = () => {
           {
             error && <p className='text-red-500'>{ error }</p>
           }
-           <button type="submit" disabled={isSubmitting}  className='w-full py-2 mt-2 text-center text-white bg-destructive rounded-md focus:outline-none disabled:bg-destructive/50'>Submit</button>
+           <button type="submit" disabled={isSubmitting}  className='w-full py-2 mt-2 text-center text-white rounded-md bg-destructive focus:outline-none disabled:bg-destructive/50'>Submit</button>
            <p className='tect-center'>
             Already have an account? <Link href={"/auth/signin"} className='text-green-500'>Login</Link>
            </p>
