@@ -72,6 +72,6 @@ body {
     @apply w-full py-3 focus:outline-none border px-3 rounded-md bg-gray-50 dark:bg-accent
   }
   .image {
-    @apply w-full py-3 focus:outline-none border px-3 rounded-md bg-gray-50 dark:bg-accent
+    @apply w-full py-3 focus:outline-none border px-3 rounded-md bg-transparent
   }
 }
