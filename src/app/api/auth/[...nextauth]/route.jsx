@@ -1,6 +1,7 @@
+import { User } from "@/app/(models)/user";
 import NextAuth from "next-auth/next";
 import Credentials from "next-auth/providers/credentials";
-import User from "@/app/(models)/user";
+// import User from "@/app/(models)/user";
 
 export const handler = NextAuth({
   providers : [

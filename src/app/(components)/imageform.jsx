@@ -5,6 +5,7 @@ import * as Yup from "yup"
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { Button } from '@/components/ui/button'
 import { X } from "lucide-react"
+import { useSession } from 'next-auth/react';
 
 
 const SignupSchema = Yup.object().shape({
@@ -16,16 +17,17 @@ const SignupSchema = Yup.object().shape({
 
 
 const ImageForm = ({ categories }) => {
+  const { data }  = useSession();
   const filePickerRef = React.useRef(null)
   const [ category, setCategory ] = React.useState([]);
   const [ selectedFile, setSelectedFile ] = React.useState(null);
-  // const [ tags, setTags ] = React.useState()
   const [ tags, setTags ] = React.useState([])
   const [ value, setValue ] = React.useState("");
 
   const tagHandler = (e) => {
     console.log(e.key)
-    if (e.key === "Enter" || e.key === " "){
+    if (e.key === "," || e.key === " "){
+      if (value.trim() === "") return
       const pickedTag = tags.find(tag=>tag === value.trim())
       if (pickedTag) return
       setTags([...tags, value.trim()])
@@ -33,10 +35,6 @@ const ImageForm = ({ categories }) => {
     }
   }
 
-  const setTag = (tags) => {
-    console.log(tags)
-    setTags(tags)
-  }
   const addImageToPost = (e) => {
     console.log(e.target.files[0])
     const reader = new FileReader()
@@ -67,8 +65,34 @@ const ImageForm = ({ categories }) => {
         content : ""
       }}
       validationSchema={SignupSchema}
-      onSubmit={ (values, { setSubmitting }) => {
+      onSubmit={ async (values) => {
+        const post = {
+          author : { avatar : data?.user?.image, username : data?.user?.username},
+          title : values.title,
+          content : values.content,
+          category : category,
+          // image : selectedFile,
+          tags : tags
+        }
         console.log(tags, category, values)
+        try {
+          const res = await fetch("/api/posts", {
+            method : "POST",
+            headers : {
+              "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({
+              post
+            })
+          })
+          if (res.ok) {
+            console.log("okay")
+          } else {
+            throw new Error("JAJAJAJAJAJAJAJAJA")
+          }
+        }catch(error){
+          console.log(error)
+        }
       }}
       >
         {({ errors, touched, isSubmitting, values }) => (
@@ -81,7 +105,7 @@ const ImageForm = ({ categories }) => {
             ) : null}
           </div> 
 
-          <div className="grid w-full grid-cols-3 gap-10 p-5 my-2 rounded-md py-14 bg-card">
+          <div className="grid w-full grid-cols-3 gap-10 p-5 my-2 rounded-md py-14 bg-ghost">
             {
               categories.cat && categories.cat.map(categories=>(
                 <div 
@@ -104,7 +128,7 @@ const ImageForm = ({ categories }) => {
           </div>
 
           <div className='mb-10'>
-            <h2 className='mb-2 uppercase'>Add Image</h2>
+            <h2 className='mb-2 uppercase font-semibold'>Add Image</h2>
             <div className='w-full h-[30rem] border border-dashed border-destructive p-1'>
               {
                 !selectedFile ? (

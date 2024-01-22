@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import Category from "@/app/(models)/categories";
-import User from "@/app/(models)/user";
+// import Category from "@/app/(models)/categories";
+import User, { Category } from "@/app/(models)/user";
 
 export async function GET(req) {
   try {

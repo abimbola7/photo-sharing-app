@@ -19,15 +19,33 @@ const userSchema = new Schema(
   }
 )
 
-// const categorySchema = new Schema(
-//   {
-//     name : String
-//   },
-//   {
-//     timestamps: true
-//   }
-// )
+const postSchema = new Schema(
+  {
+    author: {
+      username: String,
+      avatar: String
+    },
+    title : String,   
+    content : String,
+    category : [String],
+    tags : [String],
+    image : String,
+    comments : [String],
+    likes : [String]
+  }
+)
 
+const categorySchema = new Schema(
+  {
+    name : String
+  },
+  {
+    timestamps : true
+  }
+)
 
-const User = models.User || model("User", userSchema);
-export default User;
+const Category = models.Category || model("Category", categorySchema, "categories");
+const User = models.User || model("User", userSchema, "users");
+const Post = models.Post || model("Post", postSchema, "posts");
+
+export { User, Category, Post };
