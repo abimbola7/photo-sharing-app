@@ -157,7 +157,7 @@ const ImageForm = ({ categories }) => {
                     <Button
                     type="button"
                     onClick={()=>filePickerRef.current.click()}
-                    className="bg-destructive text-primary hover:bg-destructive">
+                    className="bg-destructive text-primary hover:bg-destructive text-white">
                       Browse Images
                     </Button>
                     <input type="file" hidden ref={filePickerRef} onChange={addImageToPost}/>
@@ -207,7 +207,7 @@ const ImageForm = ({ categories }) => {
             </div>
           </div>
         </div>
-        <button type="submit"  className='w-full text-center bg-green-600 py-2 text-white mt-2 rounded-md focus:outline-none disabled:bg-green-300'>Submit</button>
+        <button type="submit"  className='w-full text-center bg-destructive py-2 text-white mt-2 rounded-md focus:outline-none disabled:bg-green-300'>Submit</button>
         </Form>
         )}
       </Formik>

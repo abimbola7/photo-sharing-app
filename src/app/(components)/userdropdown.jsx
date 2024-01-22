@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import { DropdownMenuCheckboxItemProps, DropdownMenuItem } from "@radix-ui/react-dropdown-menu"
-
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
+
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -20,13 +21,14 @@ import Image from "next/image"
 // type Checked = DropdownMenuCheckboxItemProps["checked"]
 
 const UserDropdown = () => {
+  const router = useRouter();
   const { data } = useSession()
   const [showStatusBar, setShowStatusBar] = React.useState(true)
   const [showActivityBar, setShowActivityBar] = React.useState(false)
   const [showPanel, setShowPanel] = React.useState(false)
 
   return (
-    <DropdownMenu>
+    <DropdownMenu className="pb-0 mb-0 h-fit">
       <DropdownMenuTrigger asChild>
         <button>
           {
@@ -36,7 +38,7 @@ const UserDropdown = () => {
             src={data?.user?.image}
             alt={data?.user?.username}
             loading="lazy"
-            className="rounded-full object-cover object-center w-10 h-10"
+            className="object-cover object-center w-10 h-10 rounded-full"
             />
           }
         </button>
@@ -45,7 +47,7 @@ const UserDropdown = () => {
         data ? (
             <DropdownMenuContent className="w-56">
                 <DropdownMenuItem 
-                className="cursor-pointer py-1 focus:border-none hover:border-none hover:bg-accent"
+                className="py-1 cursor-pointer focus:border-none hover:border-none hover:bg-accent"
                 onClick={signOut}
                 >
                   Logout
@@ -53,12 +55,28 @@ const UserDropdown = () => {
             </DropdownMenuContent>
         ) : (
           <DropdownMenuContent className="w-56">
-            <Link href="/auth/signin">
-              <DropdownMenuItem className="cursor-pointer py-1 focus:border-none hover:border-none hover:bg-accent">Login</DropdownMenuItem>
-            </Link>
-            <Link href="/register">
-              <DropdownMenuItem className="cursor-pointer py-1 focus:border-none hover:border-none hover:bg-accent">Register</DropdownMenuItem>
-            </Link>
+              <DropdownMenuItem
+               className="w-full cursor-pointer focus:border-none hover:border-none hover:bg-accent">
+               <div className="w-full">
+                <Link
+                href="/auth/signin"
+                className="w-full px-2 py-1 border border-red-500"
+                >
+                  Login
+                </Link> 
+               </div>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+               className="w-full cursor-pointer focus:border-none hover:border-none hover:bg-accent">
+               <div 
+              //  onClick={router.push("/register")}
+               className="w-full px-2 py-1 border border-red-500"
+               >
+                Register
+               </div>
+              </DropdownMenuItem>
+              
+            {/* </Link> */}
           </DropdownMenuContent>
         )
       }

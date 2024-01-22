@@ -15,10 +15,10 @@ const Header = () => {
   console.log(data);
   return (
     <header
-    className='w-full border-b border-muted'
+    className='w-full border-b border-muted z-[1000] relative'
     >
       <nav
-      className='relative flex justify-end items-center mx-auto px-2 py-5 max-w-6xl space-x-4'
+      className='relative flex items-center justify-end max-w-6xl px-2 py-5 mx-auto space-x-4'
       >
         {
           data && (
