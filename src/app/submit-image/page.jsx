@@ -1,5 +1,8 @@
 import React from 'react'
 import ImageForm from '../(components)/imageform'
+import { getServerSession } from 'next-auth'
+import { handler } from '../api/auth/[...nextauth]/route'
+import { redirect } from 'next/navigation'
 
 const getCategories = async () => {
   try {
@@ -15,6 +18,8 @@ const getCategories = async () => {
 
 
 const SubmitImage = async () => {
+  const session = await getServerSession(handler)
+  if (!session) redirect("/");
   const categories = await getCategories()
   console.log(categories, "CATTTTTTTTTTTT")
   return (

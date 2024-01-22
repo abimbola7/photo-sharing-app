@@ -6,6 +6,9 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { Button } from '@/components/ui/button'
 import { X } from "lucide-react"
 import { useSession } from 'next-auth/react';
+import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import { storage } from '../../../firebase';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const SignupSchema = Yup.object().shape({
@@ -23,6 +26,7 @@ const ImageForm = ({ categories }) => {
   const [ selectedFile, setSelectedFile ] = React.useState(null);
   const [ tags, setTags ] = React.useState([])
   const [ value, setValue ] = React.useState("");
+  const [ loading, setLoading ] = React.useState(false);
 
   const tagHandler = (e) => {
     console.log(e.key)
@@ -66,15 +70,31 @@ const ImageForm = ({ categories }) => {
       }}
       validationSchema={SignupSchema}
       onSubmit={ async (values) => {
+        let downloadURL;
+        try {
+          if (loading) return;
+          setLoading(true);
+          const imageRef = ref(storage, `posts/${uuidv4()}/images`);
+          await uploadString(imageRef, selectedFile, "data_url").then(async snapshot => {
+            console.log(snapshot)
+            downloadURL = await getDownloadURL(imageRef);
+            // console.log(downloadURL)
+            // setAvatarUrl(downloadURL)
+          })
+        } catch (error) {
+          throw new Error("Problem uploading image")
+        }     
+        
+        setLoading(false);
         const post = {
           author : { avatar : data?.user?.image, username : data?.user?.username},
           title : values.title,
           content : values.content,
           category : category,
-          // image : selectedFile,
+          image : downloadURL,
           tags : tags
         }
-        console.log(tags, category, values)
+        console.log(post, downloadURL)
         try {
           const res = await fetch("/api/posts", {
             method : "POST",
@@ -134,7 +154,8 @@ const ImageForm = ({ categories }) => {
                 !selectedFile ? (
                   <div className='w-full h-full flex items-center justify-center flex-col space-y-3'>
                     <IoCloudUploadOutline className='text-7xl'/>
-                    <Button 
+                    <Button
+                    type="button"
                     onClick={()=>filePickerRef.current.click()}
                     className="bg-destructive text-primary hover:bg-destructive">
                       Browse Images
