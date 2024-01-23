@@ -28,9 +28,9 @@ const UserDropdown = () => {
   const [showPanel, setShowPanel] = React.useState(false)
 
   return (
-    <DropdownMenu className="pb-0 mb-0 h-fit">
+    <DropdownMenu className="pb-0 mb-0 border-none h-fit">
       <DropdownMenuTrigger asChild>
-        <button>
+        <button className="border-none">
           {
             !data ? 
             <FaUserCircle className='text-xl'/> : 
@@ -38,7 +38,7 @@ const UserDropdown = () => {
             src={data?.user?.image}
             alt={data?.user?.username}
             loading="lazy"
-            className="object-cover object-center w-10 h-10 rounded-full"
+            className="object-cover object-center w-10 h-10 border-none rounded-full"
             />
           }
         </button>
@@ -54,29 +54,13 @@ const UserDropdown = () => {
                 </DropdownMenuItem>
             </DropdownMenuContent>
         ) : (
-          <DropdownMenuContent className="w-56">
-              <DropdownMenuItem
-               className="w-full cursor-pointer focus:border-none hover:border-none hover:bg-accent">
-               <div className="w-full">
-                <Link
-                href="/auth/signin"
-                className="w-full px-2 py-1 border border-red-500"
-                >
-                  Login
-                </Link> 
-               </div>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-               className="w-full cursor-pointer focus:border-none hover:border-none hover:bg-accent">
-               <div 
-              //  onClick={router.push("/register")}
-               className="w-full px-2 py-1 border border-red-500"
-               >
-                Register
-               </div>
-              </DropdownMenuItem>
-              
-            {/* </Link> */}
+          <DropdownMenuContent className="flex flex-col w-56 ">
+            <Link href="/auth/signin" className="py-1">
+              Login
+            </Link>
+            <Link href="/register" className="py-1">
+              Register
+            </Link>
           </DropdownMenuContent>
         )
       }

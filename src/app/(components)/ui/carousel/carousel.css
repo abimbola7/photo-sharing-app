@@ -321,3 +321,13 @@ button:nth-child(2) {
   }
     
 }
+
+.list .item img {
+  width: 100%;
+  height: auto;
+  transition: opacity 0.5s ease;
+}
+
+.list .item.prev img {
+  opacity: 0;
+}
