@@ -30,7 +30,7 @@ async function getPosts(name) {
 const Cat = async ({ params }) => {
   const { cat } = await getCat(params.name)
   const posts  = await getPosts(params.name)
-  console.log(posts)
+  // console.log(posts)
   // console.log(/category)
   return (
     <div>

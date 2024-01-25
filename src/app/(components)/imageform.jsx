@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from 'next/navigation'
 import React from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from "yup"
@@ -20,6 +21,7 @@ const SignupSchema = Yup.object().shape({
 
 
 const ImageForm = ({ categories }) => {
+  const router = useRouter()
   const { data }  = useSession();
   const filePickerRef = React.useRef(null)
   const [ category, setCategory ] = React.useState([]);
@@ -107,7 +109,8 @@ const ImageForm = ({ categories }) => {
             })
           })
           if (res.ok) {
-            console.log("okay")
+            console.log("okay");
+            router.push("/")
           } else {
             throw new Error("JAJAJAJAJAJAJAJAJA")
           }
@@ -208,7 +211,7 @@ const ImageForm = ({ categories }) => {
             </div>
           </div>
         </div>
-        <button type="submit"  className='w-full py-2 mt-2 text-center text-white rounded-md bg-destructive focus:outline-none disabled:bg-green-300'>Submit</button>
+        <button type="submit"  className='w-full py-2 mt-2 text-center text-white rounded-md bg-destructive focus:outline-none disabled:bg-green-300'>Upload</button>
         </Form>
         )}
       </Formik>

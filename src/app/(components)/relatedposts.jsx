@@ -1,0 +1,34 @@
+import React from 'react'
+import { Post as PP } from '../(models)/user'
+import Post from './post'
+
+const getRelatedPost = async (categories, id) => {
+  console.log(id, "IDdddddddddddddd")
+  try {
+    const cat = await PP.find({ 
+      "category" : { $in : categories },
+      "_id" : { $ne : id }
+    }).limit(6);
+    // console.log(cat)
+    return cat
+    // console.log(cat.json())
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const RelatedPosts = async ({ categories, id }) => {
+  const related = await getRelatedPost(categories, id)
+  console.log(related, "RELATEDDDDD")
+  return (
+    <div className='max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 py-10  gap-4'>
+        {
+          related && related.map((post)=>(
+            <Post key={post._id} post={post} />
+          ))
+        }
+      </div>
+  )
+}
+
+export default RelatedPosts
