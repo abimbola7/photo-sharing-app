@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models  } from "mongoose";
 
 console.log(process.env.MONGODB_USER_URI)
 
@@ -32,6 +32,9 @@ const postSchema = new Schema(
     image : String,
     comments : [String],
     likes : [String]
+  },
+  {
+    timestamps: true
   }
 )
 

@@ -92,7 +92,8 @@ const ImageForm = ({ categories }) => {
           content : values.content,
           category : category,
           image : downloadURL,
-          tags : tags
+          tags : tags,
+          createdAt : new Date()
         }
         console.log(post, downloadURL)
         try {
@@ -118,7 +119,7 @@ const ImageForm = ({ categories }) => {
         {({ errors, touched, isSubmitting, values }) => (
          <Form className='flex flex-col space-y-3'>
           <div>
-            <label className='uppercase font-semibold'>Title</label>
+            <label className='font-semibold uppercase'>Title</label>
             <Field name="title"  className="image"/>
             {errors.title && touched.title ? (
               <div className='text-red-700'>{errors.title}</div>
@@ -140,7 +141,7 @@ const ImageForm = ({ categories }) => {
           </div>
           
           <div>
-           <label className="uppercase font-semibold">Content</label>
+           <label className="font-semibold uppercase">Content</label>
            <Field name="content" className="image" as="textarea" rows="6" />
            {errors.content && touched.content ? (
              <div className='text-red-700'>{errors.content}</div>
@@ -148,16 +149,16 @@ const ImageForm = ({ categories }) => {
           </div>
 
           <div className='mb-10'>
-            <h2 className='mb-2 uppercase font-semibold'>Add Image</h2>
+            <h2 className='mb-2 font-semibold uppercase'>Add Image</h2>
             <div className='w-full h-[30rem] border border-dashed border-destructive p-1'>
               {
                 !selectedFile ? (
-                  <div className='w-full h-full flex items-center justify-center flex-col space-y-3'>
+                  <div className='flex flex-col items-center justify-center w-full h-full space-y-3'>
                     <IoCloudUploadOutline className='text-7xl'/>
                     <Button
                     type="button"
                     onClick={()=>filePickerRef.current.click()}
-                    className="bg-destructive text-primary hover:bg-destructive text-white">
+                    className="text-white bg-destructive text-primary hover:bg-destructive">
                       Browse Images
                     </Button>
                     <input type="file" hidden ref={filePickerRef} onChange={addImageToPost}/>
@@ -173,17 +174,17 @@ const ImageForm = ({ categories }) => {
               selectedFile && (
                 <Button 
                 onClick={()=>setSelectedFile(null)}
-                className="text-primary bg-destructive hover:bg-destructive mt-2">Remove Image</Button>
+                className="mt-2 text-primary bg-destructive hover:bg-destructive">Remove Image</Button>
               )
             }
           </div>
           <div className=''>
           <h1 className='font-semibold'>TAGS</h1>
-          <div className='px-1 py-1 w-full border rounded-lg flex items-center mb-20 overflow-x-auto'>
-            <div className='flex items-center flex-row space-x-2'>
+          <div className='flex items-center w-full px-1 py-1 mb-20 overflow-x-auto border rounded-lg'>
+            <div className='flex flex-row items-center space-x-2'>
               {
                 tags.map(tag=>(
-                  <div className='bg-ghost rounded-md px-2 mr-1 flex items-center space-x-2' key={tag}>
+                  <div className='flex items-center px-2 mr-1 space-x-2 rounded-md bg-ghost' key={tag}>
                     <span className='mr-2'>{tag}</span>
                     <Button 
                     asChild 
@@ -192,14 +193,14 @@ const ImageForm = ({ categories }) => {
                     className="w-2 cursor-pointer"
                     onClick={()=>setTags(tags.filter(t=>t!==tag))}
                     >
-                      <X className="h-4 w-6 p-1 bg-destructive hover:bg-destructive"/>
+                      <X className="w-6 h-4 p-1 bg-destructive hover:bg-destructive"/>
                     </Button>
                   </div> 
                 ))
               }
               <input 
               placeholder='Enter Tags'
-                className="flex-1 px-2 py-1 focus:outline-none bg-transparent"
+                className="flex-1 px-2 py-1 bg-transparent focus:outline-none"
               value={value}
               onChange={(e)=>setValue(e.target.value)}
               onKeyDown={tagHandler}
@@ -207,7 +208,7 @@ const ImageForm = ({ categories }) => {
             </div>
           </div>
         </div>
-        <button type="submit"  className='w-full text-center bg-destructive py-2 text-white mt-2 rounded-md focus:outline-none disabled:bg-green-300'>Submit</button>
+        <button type="submit"  className='w-full py-2 mt-2 text-center text-white rounded-md bg-destructive focus:outline-none disabled:bg-green-300'>Submit</button>
         </Form>
         )}
       </Formik>

@@ -15,7 +15,7 @@ const Header = () => {
   console.log(data);
   return (
     <header
-    className='w-full  z-[1000] sticky top-0'
+    className='w-full  z-[1000] border'
     >
       <nav
       className='relative flex items-center justify-end max-w-6xl px-2 py-5 mx-auto space-x-4'

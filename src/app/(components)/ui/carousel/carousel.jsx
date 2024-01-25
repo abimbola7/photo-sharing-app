@@ -11,7 +11,6 @@ const Carousel = () => {
     { imgSrc: "images/img2.jpg", author: "ABIMBOLA", title: "DESIGN dd", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
     { imgSrc: "images/img3.jpg", author: "ABIMBOLA", title: "DESIGN ddd", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
     { imgSrc: "images/img4.jpg", author: "ABIMBOLA", title: "DESIGN 3r" , topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
-    // Add other items...
   ];
 
   const handlePrevClick = () => {
