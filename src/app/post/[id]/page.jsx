@@ -6,8 +6,14 @@ import moment from 'moment';
 import Link from 'next/link';
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import RelatedPosts from '@/app/(components)/relatedposts';
+import Likes from '@/app/(components)/likes';
+import dynamic from 'next/dynamic';
 
 
+
+// const Likes = dynamic(() => import('../../(components)/likes'), {
+//   ssr: false, // Optional: Disable server-side rendering if needed
+// });
 const getPostByName = async (id) => {
   // console.log(id, "ID")
   const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
@@ -25,22 +31,19 @@ const getPostByName = async (id) => {
 const Post = async ({ params }) => {
   // console.log(params.id, "PARAMS")
   const { post } = await getPostByName(params.id)
-  // console.log(post)
+  // console.log(post.likes, "POST")
   return (
     <>
       <div className='p-3 mx-auto mt-10 rounded-lg max-w-7xl bg-card'>
         <div className="flex flex-wrap space-x-2">
           {
             post.category?.map((category, index) => (
-              <Link href={`/category/${category}`} key={index} className='text-lg font-medium text-gray-300 duration-200 transition-colors hover:text-red-500'>{category}</Link>
+              <Link href={`/category/${category}`} key={index} className='text-md md:text-lg font-medium text-gray-300 duration-200 transition-colors hover:text-red-500'>{category}</Link>
             ))
           }
         </div>
-        <h1 className='mt-3 text-4xl'>{post.title}</h1>
-        <div className='flex items-center mt-4 space-x-2'>
-          <MdOutlineThumbUp className='text-2xl text-white transition duration-200 cursor-pointer hover:text-red-500'/>
-          <div className='px-2 py-1 rounded-full bg-accent'>2</div>
-        </div>
+        <h1 className='mt-3 sm:text-2xl lg:text-4xl font-bold'>{post.title}</h1>
+        <Likes/>
 
         <Image 
         src={post.image} 
@@ -57,7 +60,7 @@ const Post = async ({ params }) => {
           {
             post.tags?.map((tag, index) => (
               <div className="flex justify-center items-center px-5 py-1 rounded-full cursor-pointer border border-destructive" key={index}>
-                <p>{ tag }</p>
+                <p className="text-sm">{ tag }</p>
               </div>
             ))
           }
@@ -73,8 +76,8 @@ const Post = async ({ params }) => {
 
       <div className='p-3 mb-10 mx-auto mt-16 rounded-lg max-w-7xl bg-card flex items-center justify-center'>
         <Link href={`/artist/${post.author.username}`}>
-          <img src={post.author.avatar} alt={"img"} className="w-40 h-40 rounded-full p-[1.5px] border-2 border-red-500 cursor-pointer object-cover transition-transform  duration-200 ease-out"/>
-          <p className='text-2xl font-semibold text-center mt-2 flex items-center gap-1'>
+          <img src={post.author.avatar} alt={"img"} className="w-20 h-20 md:w-40 md:h-40 rounded-full p-[1.5px] border-2 border-red-500 cursor-pointer object-cover transition-transform  duration-200 ease-out"/>
+          <p className='text-lg md:text-2xl font-semibold text-center mt-2 flex items-center gap-1'>
             <span>{post.author.username}</span>
             <IoIosCheckmarkCircle className='text-red-500'/>
           </p>
@@ -82,7 +85,7 @@ const Post = async ({ params }) => {
       </div>
 
       <div className='p-3 mb-10 mx-auto mt-16 rounded-lg max-w-7xl bg-card '>
-        <h1 className="text-center">Related Posts</h1>
+        <h1 className="text-center text-2xl font-semibold uppercase">Related Posts</h1>
         <RelatedPosts categories={post.category} id={post._id}/>
       </div>
     </>

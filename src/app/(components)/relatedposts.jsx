@@ -24,7 +24,13 @@ const RelatedPosts = async ({ categories, id }) => {
     <div className='max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 py-10  gap-4'>
         {
           related && related.map((post)=>(
-            <Post key={post._id} post={post} />
+            <Post 
+            key={post._id} 
+            title={post.title} 
+            name={post.author.username}
+            avatar={post.author.avatar}
+            createdAt={post.createdAt} 
+            image={post.image}/>
           ))
         }
       </div>
