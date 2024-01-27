@@ -6,7 +6,7 @@ import CategoryItem from './categoryitem';
 
 const getCategories = async () => {
   try {
-    const res =  await fetch("http://localhost:3000/api/getcategories", {
+    const res =  await fetch("https://photo-sharing-app-iu6c.vercel.app/api/getcategories", {
       cache : "no-store"
     })
     return res.json();

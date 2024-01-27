@@ -21,7 +21,7 @@ const getRelatedPost = async (name) => {
 
 async function getCat(name) {
   try {
-    const res =  await fetch(`http://localhost:3000/api/artist?artist=${name}`, {
+    const res =  await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/artist?artist=${name}`, {
       cache : "no-store"
     })
     return res.json()
@@ -36,7 +36,7 @@ async function getCat(name) {
 
 const getArtist = async (name) => {
   console.log(name, "name")
-  const res = await fetch(`http://localhost:3000/api/artist/${name}`, {
+  const res = await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/artist/${name}`, {
     cache: "no-store"
   })
   console.log(res.ok)

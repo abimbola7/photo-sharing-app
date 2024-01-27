@@ -16,7 +16,7 @@ import dynamic from 'next/dynamic';
 // });
 const getPostByName = async (id) => {
   // console.log(id, "ID")
-  const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
+  const res = await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/posts/${id}`, {
     cache: "no-store"
   })
   console.log(res.ok)

@@ -7,7 +7,7 @@ import React from 'react'
 
 async function getCat(name) {
   try {
-    const res =  await fetch(`http://localhost:3000/api/category?category=${name}`, {
+    const res =  await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/category?category=${name}`, {
       cache : "no-store"
     })
     return res.json()
@@ -18,7 +18,7 @@ async function getCat(name) {
 
 async function getPosts(name) {
   try {
-    const res =  await fetch(`http://localhost:3000/api/getposts?category=${name}`, {
+    const res =  await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/getposts?category=${name}`, {
       cache : "no-store"
     })
     return res.json()
