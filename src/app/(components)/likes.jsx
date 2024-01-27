@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { IoMdThumbsUp } from "react-icons/io";
-// import { useSession } from 'next-auth/react';
-import { Post } from '../(models)/user';
+import { useSession } from 'next-auth/react';
+// import { Post } from '../(models)/user';
 
 
 const Likes = () => {
