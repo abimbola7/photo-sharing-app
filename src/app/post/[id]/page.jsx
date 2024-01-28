@@ -8,12 +8,12 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 import RelatedPosts from '@/app/(components)/relatedposts';
 import Likes from '@/app/(components)/likes';
 import dynamic from 'next/dynamic';
+import { Montserrat } from 'next/font/google';
 
 
 
-// const Likes = dynamic(() => import('../../(components)/likes'), {
-//   ssr: false, // Optional: Disable server-side rendering if needed
-// });
+export const montserrat = Montserrat({ subsets: ['latin'] })
+
 const getPostByName = async (id) => {
   // console.log(id, "ID")
   const res = await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/posts/${id}`, {
@@ -34,11 +34,11 @@ const Post = async ({ params }) => {
   // console.log(post.likes, "POST")
   return (
     <>
-      <div className='p-3 mx-auto mt-10 rounded-lg max-w-7xl bg-card'>
+      <div className={`p-3 mx-auto mt-10 rounded-lg max-w-7xl bg-card`}>
         <div className="flex flex-wrap space-x-2">
           {
             post.category?.map((category, index) => (
-              <Link href={`/category/${category}`} key={index} className='font-medium text-gray-300 transition-colors duration-200 text-md md:text-lg hover:text-red-500'>{category}</Link>
+              <Link href={`/category/${category}`} key={index} className={`font-medium text-gray-600 dark:text-gray-300 transition-colors duration-200 text-md md:text-lg hover:text-red-500 ${montserrat.className}`}>{category}</Link>
             ))
           }
         </div>
@@ -55,8 +55,8 @@ const Post = async ({ params }) => {
         className='object-cover object-center w-full mt-5 rounded-lg'
         />
         
-        <p className='mt-2 text-lg'>{post.content}</p>
-        <div className="flex flex-row flex-wrap gap-2 mt-5">
+        <p className={`my-8 text-lg ${montserrat.className}`}>{post.content}</p>
+        <div className={`flex flex-row flex-wrap gap-2 mt-5 ${montserrat.className}`}>
           {
             post.tags?.map((tag, index) => (
               <div className="flex items-center justify-center px-5 py-1 border rounded-full cursor-pointer border-destructive" key={index}>
@@ -66,9 +66,9 @@ const Post = async ({ params }) => {
           }
         </div>
 
-        <div className="mt-5">
+        <div className={`mt-5 ${montserrat.className}`}>
           <p className='flex items-center'>
-            <IoTimeOutline className='mr-1'/>
+            <IoTimeOutline className='mr-1 text-lg'/>
             <span className='text-sm'>{moment(post.createdAt).format('MMMM Do YYYY')}</span>
           </p>
         </div>

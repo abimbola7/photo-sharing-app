@@ -8,6 +8,10 @@ import UserDropdown from './userdropdown'
 import { signOut, useSession } from 'next-auth/react'
 import { IoIosAdd } from "react-icons/io";
 import AddImage from './addimage'
+import { Montserrat } from 'next/font/google'
+
+
+const montserrat = Montserrat({ subsets: ['latin'] })
 
 
 const Header = () => {
@@ -15,21 +19,26 @@ const Header = () => {
   console.log(data);
   return (
     <header
-    className='w-full  z-[1000] border'
+    className={`w-full z-[1000] ${montserrat.className}`}
     >
       <nav
-      className='relative flex items-center justify-end max-w-6xl px-2 py-5 mx-auto space-x-4'
+      className='relative flex items-center justify-between max-w-6xl px-2 py-4 mx-auto space-x-4'
       >
-        {
-          data && (
-            <div>
-              <p>Hello { data?.user?.username }</p>
-            </div>
-          )
-        }
-        <UserDropdown />
-        <ModeToggle />
-        <AddImage/>
+        <Link href={"/"}>
+          <img src='/artnook.svg' className='w-32' />
+        </Link>
+        <div className='relative flex items-center space-x-4'>
+          {
+            data && (
+              <div>
+                <p>Hello { data?.user?.username }!</p>
+              </div>
+            )
+          }
+          <UserDropdown />
+          <ModeToggle />
+          <AddImage/>
+        </div>
       </nav>
     </header>
   )

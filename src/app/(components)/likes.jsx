@@ -12,7 +12,7 @@ const Likes = ({ id }) => {
   const [ hasLiked, setHasLiked ] = React.useState(false);
 
   const handleLikes = async () => {
-    // if (hasLiked) {
+    if (!hasLiked) {
       const res = await fetch(`/api/likes/${id}`, {
         method : "PUT",
         headers : {
@@ -24,9 +24,22 @@ const Likes = ({ id }) => {
       })
       if (res.ok) {
         console.log("delete okay")
-        fetchLikes()
       }
-    // }
+    } else {
+      const res = await fetch(`/api/likes/${id}`, {
+        method : "DELETE",
+        headers : {
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+          username : data?.user?.id
+        })
+      })
+      if (res.ok) {
+        console.log("delete okay")
+      }
+    }
+    fetchLikes()
   }
   
   const fetchLikes = async ()=> {
@@ -51,14 +64,20 @@ const Likes = ({ id }) => {
 
 
   return (
-    <div className='flex items-center mt-4 space-x-2'>
-      <Button asChild variant="outline" size="icon">
-        <IoMdThumbsUp 
-        onClick={handleLikes}
-        className='text-white transition duration-200 cursor-pointer text-xlg md:text-2xl hover:text-red-500'/>
-      </Button>
-      <div className='px-2 py-1 rounded-full bg-accent'>{ like?.length }</div>
-    </div>
+    <>
+      {
+        data && (
+            <div className='flex items-center mt-4 space-x-2'>
+              <Button asChild variant="outline" size="icon">
+                <IoMdThumbsUp 
+                onClick={handleLikes}
+                className={`transition duration-200 cursor-pointer text-lg md:text-2xl hover:text-red-500 ${hasLiked && "text-red-500"}`}/>
+              </Button>
+              <div className='px-2 py-1 rounded-full bg-accent'>{ like?.length }</div>
+            </div>
+        )
+      }
+    </>
   )
 }
 
