@@ -10,7 +10,10 @@ import { useSession } from 'next-auth/react';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { storage } from '../../../firebase';
 import { v4 as uuidv4 } from 'uuid';
+import { Montserrat } from 'next/font/google'
 
+
+const montserrat = Montserrat({ subsets: ['latin'] })
 
 const SignupSchema = Yup.object().shape({
   title : Yup.string()
@@ -134,7 +137,7 @@ const ImageForm = ({ categories }) => {
             {
               categories.cat && categories.cat.map(categories=>(
                 <div 
-                className={`py-2 px-5 text-center rounded-full cursor-pointer bg-accent ${category.includes(categories.name) && "bg-green-500"}  transition-colors duration-500`}
+                className={`py-2 px-5 text-center rounded-full cursor-pointer ${montserrat.className} bg-accent ${category.includes(categories.name) && "bg-green-500"}  transition-colors duration-500`}
                 key={categories._id}
                 onClick={()=>handleCategory(categories.name)}
                 >
