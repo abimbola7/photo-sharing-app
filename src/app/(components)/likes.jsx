@@ -3,6 +3,7 @@
 import React from 'react'
 import { IoMdThumbsUp } from "react-icons/io";
 import { useSession } from 'next-auth/react';
+import { Button } from '@/components/ui/button';
 
 
 const Likes = ({ id }) => {
@@ -51,9 +52,11 @@ const Likes = ({ id }) => {
 
   return (
     <div className='flex items-center mt-4 space-x-2'>
-      <IoMdThumbsUp 
-      onClick={handleLikes}
-      className='text-white transition duration-200 cursor-pointer text-xlg md:text-2xl hover:text-red-500'/>
+      <Button asChild variant="outline" size="icon">
+        <IoMdThumbsUp 
+        onClick={handleLikes}
+        className='text-white transition duration-200 cursor-pointer text-xlg md:text-2xl hover:text-red-500'/>
+      </Button>
       <div className='px-2 py-1 rounded-full bg-accent'>{ like?.length }</div>
     </div>
   )
