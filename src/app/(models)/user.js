@@ -33,7 +33,8 @@ const postSchema = new Schema(
     comments : [{
       username : String,
       avatar : String,
-      comment : String
+      comment : String,
+      createdAt : String
     }],
     likes : [String]
   },

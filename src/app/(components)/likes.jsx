@@ -13,6 +13,7 @@ const Likes = ({ id }) => {
 
   const handleLikes = async () => {
     if (!hasLiked) {
+      console.log(id)
       const res = await fetch(`/api/likes/${id}`, {
         method : "PUT",
         headers : {

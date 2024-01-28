@@ -78,10 +78,9 @@ const Post = async ({ params }) => {
       <div className='flex items-center justify-center p-3 mx-auto mt-16 mb-10 rounded-lg max-w-7xl bg-card'>
         <Link href={`/artist/${post.author.username}`}>
           <img src={post.author.avatar} alt={"img"} className="w-20 h-20 md:w-40 md:h-40 rounded-full p-[1.5px] border-2 border-red-500 cursor-pointer object-cover transition-transform  duration-200 ease-out"/>
-          <p className='flex items-center gap-1 mt-2 text-lg font-semibold text-center md:text-2xl'>
-            <span>{post.author.username}</span>
-            <IoIosCheckmarkCircle className='text-red-500'/>
-          </p>
+          <div className='flex items-center gap-1 mt-2 text-lg font-semibold text-center md:text-2xl justify-center items-center'>
+            <span>{post.author.username} <IoIosCheckmarkCircle className='text-red-500 inline-flex'/></span>
+          </div>
         </Link>
       </div>
 

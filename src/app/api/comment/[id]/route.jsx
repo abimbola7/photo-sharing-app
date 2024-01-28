@@ -15,7 +15,7 @@ export async function PUT(req, { params }) {
   try {
     const { id } = params;
     const body = await req.json()
-    console.log(body.comment, "body of comment")
+    console.log(typeof body.createdAt, "body of comment")
     // const ticketData = body.
     await Post.updateOne({ _id : id }, { $push: { comments : body } })
     return NextResponse.json({ message : "Ticket Updated" }, { status : 200 })
