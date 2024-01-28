@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { useSession } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button';
 import moment from 'moment';
 import { Montserrat } from 'next/font/google';
@@ -51,17 +51,17 @@ const Comments = ({ id }) => {
   return (
     <div className='max-w-7xl mx-auto py-10 rounded-md p-2'>
       {/* comments */}
-      <div className={`p-4 rounded-md mb-10 max-w-4xl mx-auto space-y-4 ${montserrat.className}`}>
-      <p className='text-center'>Comments</p>
+      <div className={`p-1 sm:p-4 rounded-md mb-10 max-w-4xl mx-auto space-y-4 ${montserrat.className}`}>
+      <p className='text-center font-semibold text-xl'>Comments</p>
        {upComment && upComment.length > 0  ? upComment.map((comment, index)=>(
-          <div key={index} className="bg-[#222222] rounded-lg flex flex-row space-x-3 p-2">
+          <div key={index} className="dark:bg-[#222222] bg-[#5c5a5a] rounded-lg flex flex-row space-x-3 p-2">
             <img src={comment.avatar} className="w-14 h-14 object-cover p-1 border rounded-full flex-shrink-0" />
             <div className="w-full space-y-4">
-              <div className="flex flex-row space-x-4 text-sm">
+              <div className="flex flex-row space-x-4 text-xs md:text-sm justify-between sm:justify-normal">
                 <p className="text-white font-bold">{comment.username}</p>
-                <p className="text-white">{moment(comment.createdAt).format('MMMM Do YYYY')}</p>
+                <p className="text-white text-xs">{moment(comment.createdAt).format('MMMM Do YYYY')}</p>
               </div>
-              <p>{ comment.comment }</p>
+              <p className='text-gray-300'>{ comment.comment }</p>
             </div>
           </div>
        )) : (
@@ -70,10 +70,10 @@ const Comments = ({ id }) => {
        } 
 
        {
-        data && (
+        data ? (
 
-          <div className="flex items-center space-x-3">
-            <img src={data?.user?.image} alt="user" className="w-20 h-20 object-cover p-1 border rounded-full flex-shrink-0"/>
+          <div className="flex space-x-3">
+            <img src={data?.user?.image} alt="user" className="h-14 w-14 sm:w-20 sm:h-20 object-cover p-1 border rounded-full flex-shrink-0"/>
             <div className=' w-full flex flex-col space-y-4'>
               <textarea 
               value={comments}
@@ -91,6 +91,13 @@ const Comments = ({ id }) => {
                 Post Comment
               </Button>
             </div>
+          </div>
+        ) : (
+          <div className='flex items-center justify-center'>
+            <button 
+            className='px-2 py-1 rounded-md bg-red-500'
+            onClick={signIn}
+            >Login to comment</button>
           </div>
         )
        }

@@ -129,11 +129,11 @@ const ImageForm = ({ categories }) => {
             ) : null}
           </div> 
 
-          <div className="grid w-full grid-cols-3 gap-10 p-5 my-2 rounded-md py-14 bg-ghost">
+          <div className="grid w-full sm:grid-cols-2 md:grid-cols-3 gap-10 p-5 my-2 rounded-md py-14 bg-ghost">
             {
               categories.cat && categories.cat.map(categories=>(
                 <div 
-                className={`py-2 text-center rounded-full cursor-pointer bg-accent ${category.includes(categories.name) && "bg-green-500"}  transition-colors duration-500`}
+                className={`py-2 px-5 text-center rounded-full cursor-pointer bg-accent ${category.includes(categories.name) && "bg-green-500"}  transition-colors duration-500`}
                 key={categories._id}
                 onClick={()=>handleCategory(categories.name)}
                 >

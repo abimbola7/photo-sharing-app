@@ -10,28 +10,30 @@ import Link from 'next/link';
 const AddImage = () => {
   const { data } = useSession();
   return (
-    <>
+    <div>
       {
         data && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon" className="rounded-full bg-destructive">
-                <IoIosAdd className='text-2xl'/>
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center">
-              <DropdownMenuItem>
-                <Link href="/submit-image" className='flex items-center justify-center space-x-2'>
-                  <CiImageOn />
-                  <p>Add Image</p>
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>    
+          <div className="hidden sm:block">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon" className="rounded-full bg-destructive">
+                  <IoIosAdd className='text-2xl'/>
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center">
+                <DropdownMenuItem>
+                  <Link href="/submit-image" className='flex items-center justify-center space-x-2'>
+                    <CiImageOn />
+                    <p>Add Image</p>
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>    
+          </div>
         )
       }
-    </>
+    </div>
   )
 }
 

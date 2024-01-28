@@ -9,6 +9,7 @@ import { signOut, useSession } from 'next-auth/react'
 import { IoIosAdd } from "react-icons/io";
 import AddImage from './addimage'
 import { Montserrat } from 'next/font/google'
+import { SideBar } from './sidebar'
 
 
 const montserrat = Montserrat({ subsets: ['latin'] })
@@ -27,10 +28,10 @@ const Header = () => {
         <Link href={"/"}>
           <img src='/artnook.svg' className='w-32' />
         </Link>
-        <div className='relative flex items-center space-x-4'>
+        <div className='relative flex items-center space-x-2 sm:space-x-4'>
           {
             data && (
-              <div>
+              <div className="sm:block hidden">
                 <p>Hello { data?.user?.username }!</p>
               </div>
             )
@@ -38,6 +39,9 @@ const Header = () => {
           <UserDropdown />
           <ModeToggle />
           <AddImage/>
+          {data && (
+            <SideBar />
+          )}
         </div>
       </nav>
     </header>
