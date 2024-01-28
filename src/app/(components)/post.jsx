@@ -28,7 +28,7 @@ const Post = ({ title, image, createdAt, name, avatar }) => {
       </div>
       <div className="overflow-hidden h-fit relative">
         <div className='absolute top-0 left-0 z-20 w-full h-full p-3 flex items-end pointer-events-none'>
-          <p className='font-semibold text-xl'>{ title }</p>
+          <p className='font-semibold text-xl truncate'>{ title }</p>
         </div>
         <Link href={`/post/${title}`} className="overflow-hidden mt-2">
           <Image 

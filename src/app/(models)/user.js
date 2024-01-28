@@ -30,7 +30,11 @@ const postSchema = new Schema(
     category : [String],
     tags : [String],
     image : String,
-    comments : [String],
+    comments : [{
+      username : String,
+      avatar : String,
+      comment : String
+    }],
     likes : [String]
   },
   {

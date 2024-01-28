@@ -9,6 +9,7 @@ import RelatedPosts from '@/app/(components)/relatedposts';
 import Likes from '@/app/(components)/likes';
 import dynamic from 'next/dynamic';
 import { Montserrat } from 'next/font/google';
+import Comments from '@/app/(components)/comments';
 
 
 
@@ -83,6 +84,8 @@ const Post = async ({ params }) => {
           </p>
         </Link>
       </div>
+
+      <Comments id={post._id}/>
 
       <div className='p-3 mx-auto mt-16 mb-10 rounded-lg max-w-7xl bg-card '>
         <h1 className="text-2xl font-semibold text-center uppercase">Related Posts</h1>

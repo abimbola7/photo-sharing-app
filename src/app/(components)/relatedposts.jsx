@@ -19,7 +19,7 @@ const getRelatedPost = async (categories, id) => {
 
 const RelatedPosts = async ({ categories, id }) => {
   const related = await getRelatedPost(categories, id)
-  console.log(related, "RELATEDDDDD")
+  // console.log(related, "RELATEDDDDD")
   return (
     <div className='max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 py-10  gap-4'>
         {
