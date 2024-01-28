@@ -128,8 +128,9 @@ const ImageForm = ({ categories }) => {
               <div className='text-red-700'>{errors.title}</div>
             ) : null}
           </div> 
-
-          <div className="grid w-full sm:grid-cols-2 md:grid-cols-3 gap-10 p-5 my-2 rounded-md py-14 bg-ghost">
+          
+          <p className="text-center text-xl mt-2">Select Categories</p>
+          <div className="grid w-full sm:grid-cols-2 md:grid-cols-3 gap-10 p-5 my-2 rounded-md py-8 bg-ghost">
             {
               categories.cat && categories.cat.map(categories=>(
                 <div 
