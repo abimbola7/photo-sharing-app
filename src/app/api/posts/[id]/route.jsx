@@ -8,6 +8,7 @@ export async function GET(req, { params }) {
   // console.log(id, "params")
   try {
     const post =  await Post.findOne({ title : id })
+    console.log(post, "POSTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
     return NextResponse.json({ post }, { status : 200 })
   } catch (error) {
     console.log(error)

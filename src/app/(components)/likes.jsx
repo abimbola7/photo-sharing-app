@@ -13,7 +13,7 @@ const Likes = ({ id }) => {
 
   const handleLikes = async () => {
     if (!hasLiked) {
-      console.log(id)
+      // console.log(id)
       const res = await fetch(`/api/likes/${id}`, {
         method : "PUT",
         headers : {
@@ -60,8 +60,8 @@ const Likes = ({ id }) => {
     setHasLiked(like?.findIndex(like => like === data?.user?.id) !== -1
     ), [ like ])
     
-  console.log(like)
-  console.log(hasLiked)
+  // console.log(like)
+  // console.log(hasLiked)
 
 
   return (

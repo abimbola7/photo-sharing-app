@@ -3,7 +3,7 @@ import { Post as PP } from '../(models)/user'
 import Post from './post'
 
 const getRelatedPost = async (categories, id) => {
-  console.log(id, "IDdddddddddddddd")
+  // console.log(id, "IDdddddddddddddd")
   try {
     const cat = await PP.find({ 
       "category" : { $in : categories },

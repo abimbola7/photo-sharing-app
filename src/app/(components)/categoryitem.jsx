@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const CategoryItem = ({ item, id, name, imageSrc }) => {
-  console.log(imageSrc)
+  // console.log(imageSrc)
   return (
     <div className='relative transition-transform duration-500 hover:-translate-y-2'>
       <div className='absolute top-0 left-0 z-50 w-full h-full p-8 pointer-events-none'>

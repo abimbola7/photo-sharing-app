@@ -34,7 +34,7 @@ const ImageForm = ({ categories }) => {
   const [ loading, setLoading ] = React.useState(false);
 
   const tagHandler = (e) => {
-    console.log(e.key)
+    // console.log(e.key)
     if (e.key === "," || e.key === " "){
       if (value.trim() === "") return
       const pickedTag = tags.find(tag=>tag === value.trim())
@@ -45,7 +45,7 @@ const ImageForm = ({ categories }) => {
   }
 
   const addImageToPost = (e) => {
-    console.log(e.target.files[0])
+    // console.log(e.target.files[0])
     const reader = new FileReader()
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0])
@@ -64,7 +64,7 @@ const ImageForm = ({ categories }) => {
     setCategory([...category, name])
   }
 
-  console.log(category);
+  // console.log(category);
   
   return (
     <div className='mx-auto w-[50rem] max-w-[90%] mt-10'>
@@ -81,7 +81,7 @@ const ImageForm = ({ categories }) => {
           setLoading(true);
           const imageRef = ref(storage, `posts/${uuidv4()}/images`);
           await uploadString(imageRef, selectedFile, "data_url").then(async snapshot => {
-            console.log(snapshot)
+            // console.log(snapshot)
             downloadURL = await getDownloadURL(imageRef);
             // console.log(downloadURL)
             // setAvatarUrl(downloadURL)
@@ -93,7 +93,7 @@ const ImageForm = ({ categories }) => {
         setLoading(false);
         const post = {
           author : { avatar : data?.user?.image, username : data?.user?.username},
-          title : values.title,
+          title : values.title.trim(),
           content : values.content,
           category : category,
           image : downloadURL,

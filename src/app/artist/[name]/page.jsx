@@ -10,7 +10,7 @@ import { IoIosCheckmarkCircle } from 'react-icons/io'
 
 
 const getRelatedPost = async (name) => {
-  console.log(name, "name")
+  // console.log(name, "name")
   try {
     const post = await PP.find({ "author.username" : name });
     return post
@@ -35,7 +35,7 @@ async function getCat(name) {
 
 
 const getArtist = async (name) => {
-  console.log(name, "name")
+  // console.log(name, "name")
   const res = await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/artist/${name}`, {
     cache: "no-store"
   })
@@ -50,10 +50,10 @@ const getArtist = async (name) => {
 
 const ArtistPage = async ({ params }) => {
   const { cat } = await getCat(params.name)
-  console.log(cat, "CATTTTT")
+  // console.log(cat, "CATTTTT")
   const { post : artist } = await getArtist(params.name)
   const posts = await getRelatedPost(params.name)
-  console.log(posts, "POSTSSSS")
+  // console.log(posts, "POSTSSSS")
   return (
     <div className='w-full'>
       <div className="relative">

@@ -12,7 +12,7 @@ const Comments = ({ id }) => {
   const [ upComment, setUpComment ] = React.useState(null)
   const { data } = useSession()
   const handleComment = async () => {
-    console.log(comments)
+    // console.log(comments)
     if (comments.trim() === "") returnw
     const res = await fetch(`/api/comment/${id}`, {
       method : "PUT",
@@ -46,7 +46,7 @@ const Comments = ({ id }) => {
     fetchComments()
   }, [id])
 
-  console.log(upComment, "COMMENTS")
+  // console.log(upComment, "COMMENTS")
 
   return (
     <div className='max-w-7xl mx-auto py-10 rounded-md p-2'>
