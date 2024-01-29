@@ -57,7 +57,7 @@ const Comments = ({ id }) => {
           <div key={index} className="dark:bg-[#222222] bg-[#5c5a5a] rounded-lg flex flex-row space-x-3 p-2">
             <img src={comment.avatar} className="w-14 h-14 object-cover p-1 border rounded-full flex-shrink-0" />
             <div className="w-full space-y-4">
-              <div className="flex flex-row space-x-4 text-xs md:text-sm justify-between sm:justify-normal">
+              <div className="flex flex-row space-x-4 text-xs md:text-sm justify-between items-center sm:justify-normal">
                 <p className="text-white font-bold">{comment.username}</p>
                 <p className="text-white text-xs">{moment(comment.createdAt).format('MMMM Do YYYY')}</p>
               </div>
