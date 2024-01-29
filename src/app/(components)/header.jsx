@@ -10,6 +10,7 @@ import { IoIosAdd } from "react-icons/io";
 import AddImage from './addimage'
 import { Montserrat } from 'next/font/google'
 import { SideBar } from './sidebar'
+import SearchBar from './searchbar'
 
 
 const montserrat = Montserrat({ subsets: ['latin'] })
@@ -28,6 +29,7 @@ const Header = () => {
         <Link href={"/"}>
           <img src='/artnook.svg' className='w-32' />
         </Link>
+        <SearchBar />
         <div className='relative flex items-center space-x-2 sm:space-x-4'>
           {
             data && (
