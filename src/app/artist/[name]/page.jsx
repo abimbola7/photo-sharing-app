@@ -1,6 +1,7 @@
 
 
 import Post from '@/app/(components)/post'
+import UserBio from '@/app/(components)/userbio'
 import { Post as PP } from '@/app/(models)/user'
 import Link from 'next/link'
 import React from 'react'
@@ -48,6 +49,7 @@ const getArtist = async (name) => {
 
 
 
+
 const ArtistPage = async ({ params }) => {
   const { cat } = await getCat(params.name)
   // console.log(cat, "CATTTTT")
@@ -58,6 +60,7 @@ const ArtistPage = async ({ params }) => {
     <div className='w-full'>
       <div className="relative">
         <img src="/images/main.jpg" alt="img" className='w-full h-96 object-cover object-center brightness-75'/>
+        <UserBio name={artist.username} id={artist._id}/>
         <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
           <div className="flex items-center justify-center flex-col">
             <img src={artist.avatar} alt={"img"} className="w-36 h-36 md:w-48 md:h-48 rounded-full p-[1.5px] border-[2px] border-red-500 object-cover transition-transform  duration-200 ease-out"/>

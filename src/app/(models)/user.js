@@ -12,7 +12,8 @@ const userSchema = new Schema(
     avatar : String,
     email : String,
     username : String,
-    password : String
+    password : String,
+    bio : String,
   },
   {
     timestamps: true

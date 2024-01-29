@@ -4,7 +4,7 @@ import * as React from "react"
 import { DropdownMenuCheckboxItemProps, DropdownMenuItem } from "@radix-ui/react-dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
-
+import { CiUser, CiLogout } from "react-icons/ci";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -17,15 +17,12 @@ import { FaUserCircle } from "react-icons/fa"
 import Link from "next/link"
 import { signOut, useSession } from "next-auth/react"
 import Image from "next/image"
-
 // type Checked = DropdownMenuCheckboxItemProps["checked"]
 
 const UserDropdown = () => {
   const router = useRouter();
   const { data } = useSession()
-  const [showStatusBar, setShowStatusBar] = React.useState(true)
-  const [showActivityBar, setShowActivityBar] = React.useState(false)
-  const [showPanel, setShowPanel] = React.useState(false)
+
 
   return (
     <DropdownMenu className="pb-0 mb-0 border-none h-fit">
@@ -48,9 +45,27 @@ const UserDropdown = () => {
             <DropdownMenuContent className="w-56">
                 <DropdownMenuItem 
                 className="py-1 cursor-pointer focus:border-none hover:border-none hover:bg-accent"
+                onClick={()=>router.push(`/artist/${data?.user?.username}`)}
+                >
+                  <div className="grid gap-4">
+                    <div  className='flex items-center justify-start space-x-2 hover:text-red-500'>
+                      <CiUser className="text-2xl"
+                      />
+                      <p>Profile</p>
+                    </div>
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                className="py-1 cursor-pointer focus:border-none hover:border-none hover:bg-accent"
                 onClick={signOut}
                 >
-                  Logout
+                  <div className="grid gap-4">
+                    <div  className='flex items-center justify-start space-x-2 hover:text-red-500'>
+                      <CiLogout className="text-2xl"
+                      />
+                      <p>Logout</p>
+                    </div>
+                  </div>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         ) : (
