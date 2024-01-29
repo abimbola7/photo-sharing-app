@@ -115,8 +115,8 @@ const RegisterForm = () => {
         setError(null)
         try {
           const user = {
-            email : values.email,
-            username : values.username
+            email : values.email.trim(),
+            username : values.username.trim()
           }
           const resUserExists = await fetch("/api/userexists", {
             method : "POST",
