@@ -54,11 +54,11 @@ const UserBio = ({ id, name }) => {
   },[])
   
   return (
-    <div className={`absolute top-0 right-0 p-2 z-50`}>
+    <div className={`absolute top-0 right-0 p-2 z-50 opacity-0 duration-200 transition-all group-hover:opacity-100`}>
       <Dialog>
         <DialogTrigger asChild onClick={()=>setEditMode(false)}>
           <Button variant="outline" asChild size="icon" className="cursor-pointer">
-            <FaUserAstronaut className='text-sm'/>
+            <FaUserAstronaut className='text-xs'/>
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">

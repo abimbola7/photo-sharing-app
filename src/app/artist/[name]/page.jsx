@@ -58,7 +58,7 @@ const ArtistPage = async ({ params }) => {
   // console.log(posts, "POSTSSSS")
   return (
     <div className='w-full'>
-      <div className="relative">
+      <div className="relative group">
         <img src="/images/main.jpg" alt="img" className='w-full h-96 object-cover object-center brightness-75'/>
         <UserBio name={artist.username} id={artist._id}/>
         <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">

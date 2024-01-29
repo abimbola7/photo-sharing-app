@@ -40,7 +40,7 @@ const LoginForm = () => {
             setError("Invalid credentials")
             return;
           }
-          router.back();
+          router.push("/");
         } catch(error) {
           console.log("error in the loginform", error)
         }

@@ -5,7 +5,7 @@ export default function Loading() {
     <div
     className="flex justify-center min-h-screen w-full items-center"
     >
-      <img className='h-96' src="loader.svg" alt="loading..." />
+      <img className='w-56' src="loader.svg" alt="loading..." />
     </div>
   )
 }
