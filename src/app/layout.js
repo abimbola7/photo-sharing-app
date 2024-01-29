@@ -2,7 +2,8 @@ import {
   Inter, 
   Julius_Sans_One,
   Montserrat,
-  Merriweather
+  Merriweather,
+  Ubuntu
  } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from './(components)/ui/theme-provider'
@@ -19,6 +20,12 @@ const merriweather = Merriweather({
   display: 'swap'
 })
 
+const ubuntu = Ubuntu({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  display: 'swap'
+})
+
 
 export const metadata = {
   title: 'artnook',
@@ -29,7 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body 
-      className={`${merriweather.className}`}
+      className={`${ubuntu.className}`}
       >
         <AuthProvider>
           <ThemeProvider
