@@ -1,6 +1,10 @@
 import React from 'react'
 import Post from '../(components)/post'
+import { Montserrat } from 'next/font/google'
+import { redirect } from 'next/navigation'
 
+
+const montserrat = Montserrat({ subsets: ['latin'] })
 
 const getSearchs = async (search) => {
   try {
@@ -19,6 +23,7 @@ const getSearchs = async (search) => {
 
 
 const Search = async ({searchParams}) => {
+  // const router = useRouter()
   const { results } = await getSearchs(searchParams.search)
 
   return (
@@ -44,8 +49,8 @@ const Search = async ({searchParams}) => {
             </div>
           </div>   
         ) : (
-          <div>
-            <p>Could not find what you&apos;re looking for</p>
+          <div className="max-w-7xl mx-auto p-2 min-h-screen flex justify-center pt-10">
+            <p className={`text-center ${montserrat.className}`}>Could not find what you&apos;re looking for.</p>
           </div>
         )
       }
