@@ -1,5 +1,6 @@
 
 
+import CommentsCount from '@/app/(components)/commentscount'
 import LikesCount from '@/app/(components)/likescount'
 import Post from '@/app/(components)/post'
 import UserBio from '@/app/(components)/userbio'
@@ -72,10 +73,11 @@ const ArtistPage = async ({ params }) => {
           <div className="flex flex-col items-center w-full p-1 mt-2 bg-card">
             <div className='flex items-center justify-center'>
               <div className="flex flex-col border-r p-2">
-                <p className="text-2xl font-bold text-center">{ posts.length}</p>
-                <p className="font-semibold text-gray-400 !block uppercase">posts</p>
+                <p className="text-lg sm:text-2xl font-bold text-center">{ posts.length}</p>
+                <p className="text-md sm:text-xl font-semibold text-gray-400 !block uppercase">posts</p>
               </div>
               <LikesCount name={artist.username}/>
+              <CommentsCount name={artist.username} />
             </div>
           </div>
         </div>

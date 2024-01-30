@@ -14,7 +14,7 @@ const LikesCount = ({ name }) => {
       })
       const { likesCount } = await res.json()
       console.log(likesCount, "TOTAL LIKES")
-      setTotalLikes(likesCount[0].totalLikes)
+      setTotalLikes(likesCount[0]?.totalLikes)
       
     } catch (error) {
       console.log(error)
@@ -24,11 +24,11 @@ const LikesCount = ({ name }) => {
   React.useEffect(()=>{
     getNoLikes()
   }, [])
-
+  console.log(totalLikes)
   return (
     <div className="flex flex-col border-r p-2">
-      <p className="text-2xl font-bold text-center">{ totalLikes }</p>
-      <p className="font-semibold text-gray-400 !block uppercase">likes</p>
+      <p className="text-lg sm:text-2xl font-bold text-center">{ totalLikes }</p>
+      <p className="text-md sm:text-xl font-semibold text-gray-400 !block uppercase">likes</p>
     </div>
   )
 }
