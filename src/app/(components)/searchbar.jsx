@@ -4,7 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { useRouter } from 'next/navigation';
 
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const router = useRouter()
   const [ search, setSearch ] = React.useState("")
 
@@ -16,7 +16,7 @@ const SearchBar = () => {
   return (
     <form 
     onSubmit={handleSearch}
-    className="rounded-full relative">
+    className={"rounded-full " + props.className}>
       <div className="absolute top-3 left-2">
         <CiSearch className="text-lg"/>
       </div>
@@ -24,7 +24,7 @@ const SearchBar = () => {
       value={search}
       onChange={(e)=>setSearch(e.target.value)}
       placeholder="Search..."
-      className="border py-2 px-8 rounded-full focus:outline-none w-56 duration transition-all focus:w-72"/>
+      className="border py-2 px-8 rounded-full focus:outline-none w-48 sm:w-56 duration transition-all focus:56 sm:focus:w-72"/>
     </form>
   )
 }
