@@ -1,5 +1,6 @@
 
 
+import LikesCount from '@/app/(components)/likescount'
 import Post from '@/app/(components)/post'
 import UserBio from '@/app/(components)/userbio'
 import { Post as PP } from '@/app/(models)/user'
@@ -34,7 +35,6 @@ async function getCat(name) {
 
 
 
-
 const getArtist = async (name) => {
   // console.log(name, "name")
   const res = await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/artist/${name}`, {
@@ -59,27 +59,30 @@ const ArtistPage = async ({ params }) => {
   return (
     <div className='w-full'>
       <div className="relative group">
-        <img src="/images/main.jpg" alt="img" className='w-full h-96 object-cover object-center brightness-75'/>
+        <img src="/images/main.jpg" alt="img" className='object-cover object-center w-full h-96 brightness-75'/>
         <UserBio name={artist.username} id={artist._id}/>
-        <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-          <div className="flex items-center justify-center flex-col">
+        <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full">
+          <div className="flex flex-col items-center justify-center">
             <img src={artist.avatar} alt={"img"} className="w-36 h-36 md:w-48 md:h-48 rounded-full p-[1.5px] border-[2px] border-red-500 object-cover transition-transform  duration-200 ease-out"/>
-            <p className='text-lg md:text-2xl font-semibold text-center mt-2 flex items-center gap-1'>
+            <p className='flex items-center gap-1 mt-2 text-lg font-semibold text-center md:text-2xl'>
               <span>{artist.username}</span>
               <IoIosCheckmarkCircle className='text-red-500'/>
             </p>
           </div>
-          <div className="p-1 bg-card w-full flex flex-col items-center mt-2">
-            <div className='flex flex-col items-center'>
-              <p className="font-bold text-2xl text-center">{ posts.length}</p>
-              <p className="font-semibold text-gray-400 !block uppercase">posts</p>
+          <div className="flex flex-col items-center w-full p-1 mt-2 bg-card">
+            <div className='flex items-center justify-center'>
+              <div className="flex flex-col border-r p-2">
+                <p className="text-2xl font-bold text-center">{ posts.length}</p>
+                <p className="font-semibold text-gray-400 !block uppercase">posts</p>
+              </div>
+              <LikesCount name={artist.username}/>
             </div>
           </div>
         </div>
       </div>
       {/* relatedposts */}
       <div className='max-w-[95%] mx-auto p-3'>
-        <h1 className='text-center font-semibold uppercase text-2xl'>POSTS</h1>
+        <h1 className='text-2xl font-semibold text-center uppercase'>POSTS</h1>
       </div>
 
       <div className='max-w-[95%] grid grid-cols-1 sm:grid-cols-2 py-4 gap-4 mx-auto'>
