@@ -4,6 +4,9 @@ import { signIn, useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button';
 import moment from 'moment';
 import { Montserrat } from 'next/font/google';
+import Link from 'next/link';
+import { FaTrash } from 'react-icons/fa';
+import DeleteComment from './deletecomment';
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 const Comments = ({ id }) => {
@@ -41,7 +44,26 @@ const Comments = ({ id }) => {
       setUpComment(comments.comments)
     }
   }
+
+  const handleDelete = async (commentId) => {
+    console.log(commentId, id, "handle")
+    const res = await fetch(`/api/comment/${commentId}`, {
+      method : "DELETE",
+      headers : {
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+        id : id
+      })
+    })
+    if (res.ok) {
+      console.log("delete okay")
+    }
+    fetchComments()
+  }
   
+  console.log(upComment)
+
   React.useEffect(()=>{
     fetchComments()
   }, [id])
@@ -57,9 +79,16 @@ const Comments = ({ id }) => {
           <div key={index} className="dark:bg-[#222222] bg-[#5c5a5a] rounded-lg flex flex-row space-x-3 p-2">
             <img src={comment.avatar} className="w-14 h-14 object-cover p-1 border rounded-full flex-shrink-0" />
             <div className="w-full space-y-4">
-              <div className="flex flex-row space-x-4 text-xs md:text-sm justify-between items-center sm:justify-normal">
-                <p className="text-white font-bold">{comment.username}</p>
-                <p className="text-white text-xs">{moment(comment.createdAt).format('MMMM Do YYYY')}</p>
+              <div className="flex flex-row space-x-4 text-xs md:text-sm justify-between items-center">
+                <Link href={`/artist/${comment.username}`} className="text-white font-bold hover:text-red-500">{comment.username}</Link>
+                <div className="flex flex-row space-x-2 items-center">
+                  <p className="text-white text-xs">{moment(comment.createdAt).format('MMMM Do YYYY')}</p>
+                  {
+                    data?.user?.username === comment.username && (
+                      <DeleteComment id={comment._id} handComment={handleDelete}/>
+                    )
+                  }
+                </div>
               </div>
               <p className='text-gray-300'>{ comment.comment }</p>
             </div>
