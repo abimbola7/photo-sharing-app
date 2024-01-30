@@ -5,7 +5,7 @@ import Post from '../(components)/post'
 const getSearchs = async (search) => {
   try {
     console.log("dddddd")
-    const res =  await fetch(`http://localhost:3000/api/search/${search}`, {
+    const res =  await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/search/${search}`, {
       cache : "no-store"
     })
     if (!res.ok) {
