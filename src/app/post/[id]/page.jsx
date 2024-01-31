@@ -10,6 +10,7 @@ import Likes from '@/app/(components)/likes';
 import dynamic from 'next/dynamic';
 import { Montserrat } from 'next/font/google';
 import Comments from '@/app/(components)/comments';
+import DeleteDropdown from '@/app/(components)/deletedropdown';
 
 
 
@@ -30,18 +31,21 @@ const getPostByName = async (id) => {
 
 
 const Post = async ({ params }) => {
-  // console.log(params.id, "PARAMS")
   const { post } = await getPostByName(params.id)
-  // console.log(post.likes, "POST")
   return (
-    <>
+    <div className="px-2">
       <div className={`p-3 mx-auto mt-10 rounded-lg max-w-7xl bg-card`}>
-        <div className="flex flex-wrap space-x-2">
-          {
-            post?.category?.map((category, index) => (
-              <Link href={`/category/${category}`} key={index} className={`font-medium text-gray-600 dark:text-gray-300 transition-colors duration-200 text-md md:text-lg hover:text-red-500 ${montserrat.className}`}>{category}</Link>
-            ))
-          }
+        <div className='flex items-center justify-between'>
+          <div className="flex flex-wrap space-x-2">
+            {
+              post?.category?.map((category, index) => (
+                <Link href={`/category/${category}`} key={index} className={`font-medium text-gray-600 dark:text-gray-300 transition-colors duration-200 text-md md:text-lg hover:text-red-500 ${montserrat.className}`}>{category}</Link>
+              ))
+            }
+          </div>
+          <div>
+            <DeleteDropdown id={post._id} username={post.author.username}/>
+          </div>
         </div>
         <h1 className='mt-3 font-bold sm:text-2xl lg:text-4xl'>{post?.title}</h1>
         <Likes id={post?._id}/>
@@ -90,7 +94,7 @@ const Post = async ({ params }) => {
         <h1 className="text-2xl font-semibold text-center uppercase">Related Posts</h1>
         <RelatedPosts categories={post?.category} id={post?._id}/>
       </div>
-    </>
+    </div>
   )
 }
 

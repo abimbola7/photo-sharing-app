@@ -15,3 +15,13 @@ export async function GET(req, { params }) {
     return new NextResponse.json({ message : error }, { status : "500" })
   }
 }
+
+export async function DELETE(req, { params }) {
+  try {
+    const { id } = params;
+    await Post.deleteOne({ _id: id })
+    return NextResponse.json({ message : "Ticket Deleted" }, { status : 200 })
+  } catch (error) {
+    return NextResponse({ message : error }, { status : "500" })
+  }
+}
