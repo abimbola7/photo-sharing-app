@@ -34,14 +34,26 @@ const ImageForm = ({ categories }) => {
   const [ loading, setLoading ] = React.useState(false);
 
   const tagHandler = (e) => {
-    // console.log(e.key)
-    if (e.key === "," || e.key === " "){
+    console.log(e.code)
+    if (e.code === "Space" || e.target.value.includes(" ")){
       if (value.trim() === "") return
       const pickedTag = tags.find(tag=>tag === value.trim())
       if (pickedTag) return
       setTags([...tags, value.trim()])
       setValue("")
     }
+  }
+  
+  const tagHandler1 = (e) => {
+    console.log(e.code)
+    if (document.activeElement.value.includes(" ")){
+      if (value.trim() === "") return
+      const pickedTag = tags.find(tag=>tag === value.trim())
+      if (pickedTag) return
+      setTags([...tags, value.trim()])
+      setValue("")
+    }
+
   }
 
   const addImageToPost = (e) => {
@@ -206,6 +218,7 @@ const ImageForm = ({ categories }) => {
                 ))
               }
               <input 
+              type="text"
               placeholder='Enter Tags'
                 className="flex-1 px-2 py-1 bg-transparent focus:outline-none"
               value={value}
@@ -215,7 +228,7 @@ const ImageForm = ({ categories }) => {
             </div>
           </div>
         </div>
-        <button type="submit"  className='w-full py-2 mt-2 text-center text-white rounded-md bg-destructive focus:outline-none disabled:bg-green-300'>Upload</button>
+        <button type="submit" disabled={isSubmitting}  className='w-full py-2 mt-2 text-center text-white rounded-md bg-destructive focus:outline-none disabled:bg-red-300'>Upload</button>
         </Form>
         )}
       </Formik>
