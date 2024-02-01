@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 import { Montserrat } from 'next/font/google';
 import Comments from '@/app/(components)/comments';
 import DeleteDropdown from '@/app/(components)/deletedropdown';
+import { FaRegComment } from "react-icons/fa6";
 
 
 
@@ -48,8 +49,7 @@ const Post = async ({ params }) => {
           </div>
         </div>
         <h1 className='mt-3 font-bold sm:text-2xl lg:text-4xl'>{post?.title}</h1>
-        <Likes id={post?._id}/>
-
+        <p className={`my-8 text-lg ${montserrat.className}`}>{post?.content}</p>
         <Image 
         src={post?.image} 
         width={1000} 
@@ -59,8 +59,13 @@ const Post = async ({ params }) => {
         alt={"img"}
         className='object-cover object-center w-full mt-5 rounded-lg'
         />
-        
-        <p className={`my-8 text-lg ${montserrat.className}`}>{post?.content}</p>
+        <div className="flex flex-row items-center space-x-5 mt-4">
+          <Likes id={post?._id}/>
+          <div className="flex items-center space-x-2">
+            <FaRegComment className="text-2xl"/>
+            <p className="ml-2">{ post.comments.length }</p>
+          </div>
+        </div>
         <div className={`flex flex-row flex-wrap gap-2 mt-5 ${montserrat.className}`}>
           {
             post?.tags?.map((tag, index) => (
@@ -88,7 +93,7 @@ const Post = async ({ params }) => {
         </Link>
       </div>
 
-      <Comments id={post?._id}/>
+      <Comments id={post?._id} />
 
       <div className='p-3 mx-auto mt-16 mb-10 rounded-lg max-w-7xl bg-card '>
         <h1 className="text-2xl font-semibold text-center uppercase">Related Posts</h1>

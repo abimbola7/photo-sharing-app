@@ -68,7 +68,7 @@ const Likes = ({ id }) => {
     <>
       {
         data && (
-            <div className='flex items-center mt-4 space-x-2'>
+            <div className='flex items-center space-x-2'>
               <Button asChild variant="outline" size="icon">
                 <IoMdThumbsUp 
                 onClick={handleLikes}

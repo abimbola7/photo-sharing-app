@@ -9,10 +9,11 @@ import { FaTrash } from 'react-icons/fa';
 import DeleteComment from './deletecomment';
 
 const montserrat = Montserrat({ subsets: ['latin'] })
-const Comments = ({ id }) => {
+const Comments = ({ id, valComment }) => {
   const date = new Date()
   const [ comments, setComments ] = React.useState("")
   const [ upComment, setUpComment ] = React.useState(null)
+  // const [ noComment, setNoComment ] = React.useState(0)
   const { data } = useSession()
   const handleComment = async () => {
     // console.log(comments)
