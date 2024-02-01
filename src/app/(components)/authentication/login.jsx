@@ -5,6 +5,8 @@ import * as Yup from "yup"
 import { Formik, Form, Field } from 'formik';
 import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 const loginSchema = Yup.object().shape({
   email : Yup.string().email('Invalid Email').required("Required"),
@@ -40,6 +42,16 @@ const LoginForm = () => {
             setError("Invalid credentials")
             return;
           }
+          toast('Login Successful!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
           router.push("/");
         } catch(error) {
           console.log("error in the loginform", error)
@@ -69,6 +81,9 @@ const LoginForm = () => {
                 error && <p className="text-red-500">{error}</p>
               }
               <button type="submit" disabled={isSubmitting}  className='w-full py-2 mt-2 text-center text-white bg-destructive rounded-md focus:outline-none disabled:bg-destructive/50'>Submit</button>
+              <p className='tect-center'>
+                Don&apos;t have an account? <Link href="/auth/signin" className='text-red-500'>Register</Link>
+              </p>
             </Form>
           )
         }

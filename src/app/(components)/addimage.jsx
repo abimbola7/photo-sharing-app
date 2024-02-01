@@ -25,7 +25,7 @@ const AddImage = () => {
                 <DropdownMenuItem>
                   <Link href="/submit-image" className='flex items-center justify-center space-x-2'>
                     <CiImageOn />
-                    <p>Add Image</p>
+                    <p>Craft Content</p>
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>

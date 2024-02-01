@@ -62,7 +62,7 @@ const ArtistPage = async ({ params }) => {
       <div className="relative group">
         <img src="/images/main.jpg" alt="img" className='object-cover object-center w-full h-96 brightness-75'/>
         <UserBio name={artist.username} id={artist._id}/>
-        <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full">
+        <div className="absolute bottom-0 left-0 flex flex-col items-center justify-center w-full h-full">
           <div className="flex flex-col items-center justify-center">
             <EditImage avatar={artist.avatar} name={artist.username}/>
             <p className='flex items-center gap-1 mt-2 text-lg font-semibold text-center md:text-2xl'>

@@ -9,7 +9,9 @@ import './globals.css'
 import { ThemeProvider } from './(components)/ui/theme-provider'
 import Header from './(components)/header'
 import { AuthProvider } from './(providers)/authProvider';
+import { ToastContainer, toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -45,6 +47,19 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
           > 
+            <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            // transition: Bounce
+            />
             <Header />
             {children}
           </ThemeProvider>

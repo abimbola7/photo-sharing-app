@@ -34,7 +34,7 @@ export function SideBar() {
           <Link href="/submit-image" className='flex items-center justify-start space-x-2 hover:text-red-500'>
             <CiImageOn className="text-2xl"
             />
-            <p>Add Image</p>
+            <p>Craft Content</p>
           </Link>
         </div>
       </SheetContent>

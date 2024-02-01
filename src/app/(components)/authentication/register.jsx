@@ -89,7 +89,7 @@ const RegisterForm = () => {
               <CiCamera className='text-4xl' />
             </div>
             {
-              !selectedFile && <p>Select an Image</p>
+              !selectedFile && <p>Choose avatar</p>
             }
             <div className="mt-2">
               <input
@@ -203,7 +203,7 @@ const RegisterForm = () => {
           }
            <button type="submit" disabled={isSubmitting}  className='w-full py-2 mt-2 text-center text-white rounded-md bg-destructive focus:outline-none disabled:bg-destructive/50'>Submit</button>
            <p className='tect-center'>
-            Already have an account? <Link href={"/auth/signin"} className='text-green-500'>Login</Link>
+            Already have an account? <Link href={"/auth/signin"} className='text-red-500'>Login</Link>
            </p>
          </Form>
        )}
