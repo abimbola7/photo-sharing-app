@@ -1,6 +1,7 @@
 
 
 import CommentsCount from '@/app/(components)/commentscount'
+import EditImage from '@/app/(components)/editimage'
 import LikesCount from '@/app/(components)/likescount'
 import Post from '@/app/(components)/post'
 import UserBio from '@/app/(components)/userbio'
@@ -53,7 +54,6 @@ const getArtist = async (name) => {
 
 const ArtistPage = async ({ params }) => {
   const { cat } = await getCat(params.name)
-  // console.log(cat, "CATTTTT")
   const { post : artist } = await getArtist(params.name)
   const posts = await getRelatedPost(params.name)
   // console.log(posts, "POSTSSSS")
@@ -64,7 +64,7 @@ const ArtistPage = async ({ params }) => {
         <UserBio name={artist.username} id={artist._id}/>
         <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full">
           <div className="flex flex-col items-center justify-center">
-            <img src={artist.avatar} alt={"img"} className="w-36 h-36 md:w-48 md:h-48 rounded-full p-[1.5px] border-[2px] border-red-500 object-cover transition-transform  duration-200 ease-out"/>
+            <EditImage avatar={artist.avatar} name={artist.username}/>
             <p className='flex items-center gap-1 mt-2 text-lg font-semibold text-center md:text-2xl'>
               <span>{artist.username}</span>
               <IoIosCheckmarkCircle className='text-red-500'/>

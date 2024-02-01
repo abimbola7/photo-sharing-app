@@ -93,10 +93,7 @@ const ImageForm = ({ categories }) => {
           setLoading(true);
           const imageRef = ref(storage, `posts/${uuidv4()}/images`);
           await uploadString(imageRef, selectedFile, "data_url").then(async snapshot => {
-            // console.log(snapshot)
             downloadURL = await getDownloadURL(imageRef);
-            // console.log(downloadURL)
-            // setAvatarUrl(downloadURL)
           })
         } catch (error) {
           throw new Error("Problem uploading image")
