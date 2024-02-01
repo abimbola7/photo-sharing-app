@@ -22,6 +22,7 @@ export async function PUT(req, { params }) {
     console.log(body.image)
     await User.updateOne({ _id : id }, { $set: { avatar: body.image } })
     await Post.updateMany({ 'author.username': body.username }, { $set: { 'author.avatar': body.image } })
+    await Post.updateMany({ 'comments.username': body.username }, { $set: { 'comments.$.avatar': body.image } })
     return NextResponse.json({ message : "Ticket Updated" }, { status : 200 })
   } catch (error) {
     console.log(error, "PLEASE SHOW THE ERROR")
