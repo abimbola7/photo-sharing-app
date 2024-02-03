@@ -9,6 +9,7 @@ import { storage } from '../../../../firebase'
 import { getDownloadURL, ref, uploadString } from 'firebase/storage'
 import { Button } from '@/components/ui/button'
 import { v4 as uuidv4 } from 'uuid';
+import { toast } from 'react-toastify'
 
 const passwordValidator = (message) => {
   return `Your password must have at least 1 ${message} character.`
@@ -167,6 +168,16 @@ const RegisterForm = () => {
           })
           if (res.ok) {
             console.log("okay")
+            toast('Registration Successful!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
             router.replace("/auth/signin") 
           }
         } catch(err) {

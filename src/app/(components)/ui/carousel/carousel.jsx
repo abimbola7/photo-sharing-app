@@ -1,25 +1,28 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import "./carousel.css"
+import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
+import Image from 'next/image';
 
-const Carousel = () => {
+const Carousel = ({ posts }) => {
+  console.log(posts)
   const [currentItem, setCurrentItem] = useState(0);
   const [transitionClass, setTransitionClass] = useState('');
 
   const items = [
-    { imgSrc: "images/img1.jpg", author: "ABIMBOLA", title: "DESIGN", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
-    { imgSrc: "images/img2.jpg", author: "ABIMBOLA", title: "DESIGN dd", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
-    { imgSrc: "images/img3.jpg", author: "ABIMBOLA", title: "DESIGN ddd", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
-    { imgSrc: "images/img4.jpg", author: "ABIMBOLA", title: "DESIGN 3r" , topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
+    { imgSrc: "img1.jpg", author: "ABIMBOLA", title: "DESIGN", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
+    { imgSrc: "img2.jpg", author: "ABIMBOLA", title: "DESIGN dd", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
+    { imgSrc: "img3.jpg", author: "ABIMBOLA", title: "DESIGN ddd", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
+    { imgSrc: "img4.jpg", author: "ABIMBOLA", title: "DESIGN 3r" , topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
   ];
 
   const handlePrevClick = () => {
-    setCurrentItem((prevItem) => (prevItem === 0 ? items.length - 1 : prevItem - 1));
+    setCurrentItem((prevItem) => (prevItem === 0 ? posts.length - 1 : prevItem - 1));
     setTransitionClass('prev');
   };
 
   const handleNextClick = () => {
-    setCurrentItem((prevItem) => (prevItem === items.length - 1 ? 0 : prevItem + 1));
+    setCurrentItem((prevItem) => (prevItem === posts.length - 1 ? 0 : prevItem + 1));
     setTransitionClass('next');
   };
 
@@ -38,18 +41,27 @@ const Carousel = () => {
   return (
     <div className="carousel" onTransitionEnd={handleTransitionEnd}>
       <div className={`list ${transitionClass}`}>
-        {items.map((item, index) => (
+        {posts.map((item, index) => (
           <div
             key={index}
             className="item"
             style={{ transform: `translateX(${100 * (index - currentItem)}%)` }}
           >
-            <img src={item.imgSrc} alt={`Slide ${index + 1}`} className='!object-cover !w-full !h-screen'/>
+            <Image
+            quality={20}
+            priority
+            width={1000}
+            height={1000}
+            placeholder='blur'
+            blurDataURL='/loader.svg' 
+            src={item.image} 
+            alt={`Slide ${index + 1}`} 
+            className='!object-cover !w-full !h-screen'/>
             <div className="content">
-              <div className="author">{item.author}</div>
+              <div className="author">{item.author.username}</div>
               <div className="title">{item.title}</div>
-              <div className="topic">{item.topic}</div>
-              <div className="des">{item.description}</div>
+              <div className="topic">{item.content}</div>
+              {/* <div className="des">{item.description}</div> */}
               <div className="buttons">
                 <button>SEE MORE</button>
                 <button>SUBSCRIBE</button>
@@ -60,13 +72,21 @@ const Carousel = () => {
       </div>
 
       <div className={`thumbnail ${transitionClass}`}>
-        {items.map((item, index) => (
+        {posts.map((item, index) => (
           <div
             key={index}
             className="transition-transform duration-200 item"
-            style={{ transform: `translateX(${10 * (index - currentItem)}%)` }}
+            style={{ transform: `translateX(${20 * (index - currentItem)}%)` }}
           >
-            <img src={items[(index + currentItem) % items.length].imgSrc} alt={`Thumbnail ${index + 1}`} />
+            <Image
+            quality="10"
+            width={100}
+            height={100}
+            placeholder='blur'
+            blurDataURL='/loading.svg'
+            src={posts[(index + currentItem) % posts.length].image} 
+            alt={`Thumbnail ${index + 1}`} 
+            />
             <div className="content">
               <div className="title">Name Slider</div>
               <div className="des">Description</div>
@@ -76,11 +96,13 @@ const Carousel = () => {
       </div>
 
       <div className="arrows">
-        <button id="prev" onClick={handlePrevClick}></button>
-        <button id="next" onClick={handleNextClick}></button>
+        <button id="prev" onClick={handlePrevClick} className="flex items-center justify-center">
+          <ChevronLeftIcon  className="w-8 h-8"/>
+        </button>
+        <button id="next" onClick={handleNextClick} className="flex items-center justify-center">
+          <ChevronRightIcon  className="w-8 h-8"/>
+        </button>
       </div>
-
-      {/* <div className="time"></div> */}
     </div>
   );
 };

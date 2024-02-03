@@ -26,8 +26,7 @@ const UserDropdown = () => {
 
   return (
     <DropdownMenu className="pb-0 mb-0 border-none h-fit">
-      <DropdownMenuTrigger asChild>
-        <button className="border-none">
+      <DropdownMenuTrigger asChild className="cursor-pointer">
           {
             !data ? 
             <FaUserCircle className='text-xl'/> : 
@@ -38,7 +37,6 @@ const UserDropdown = () => {
             className="object-cover object-center w-10 h-10 border-none rounded-full"
             />
           }
-        </button>
       </DropdownMenuTrigger>
       {
         data ? (
