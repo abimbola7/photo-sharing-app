@@ -5,27 +5,27 @@ import Swipe from './(components)/swiper'
 
 
 
-async function getLatestPosts() {
-  try {
-    const res = await fetch('http://localhost:3000/api/latestposts')
-    if (res.ok) {
-      const data =  await res.json()
-      return data.latest
-    }
-  }catch(error){
-    console.log(error)
-  }
-}
+// async function getLatestPosts() {
+//   try {
+//     const res = await fetch('http://localhost:3000/api/latestposts')
+//     if (res.ok) {
+//       const data =  await res.json()
+//       return data.latest
+//     }
+//   }catch(error){
+//     console.log(error)
+//   }
+// }
 
 
 
 export default async function Home() {
-  const latestPosts = await getLatestPosts()
-  console.log(latestPosts, "latestpostssssssss")
+  // const latestPosts = await getLatestPosts()
+  // console.log(latestPosts, "latestpostssssssss")
   return (
     <div className='relative min-h-screen'>
       <div className='w-full h-screen overflow-hidden relative z-[1]'>
-        <Carousel posts={ latestPosts }/>
+        {/* <Carousel posts={ latestPosts }/> */}
       </div>
       {/* <div>
         <Carousel />
