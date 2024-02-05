@@ -6,30 +6,30 @@ import Image from 'next/image';
 
 const Carousel = ({ posts }) => {
   console.log(posts)
-  const [currentItem, setCurrentItem] = useState(0);
-  const [transitionClass, setTransitionClass] = useState('');
+  // const [currentItem, setCurrentItem] = useState(0);
+  // const [transitionClass, setTransitionClass] = useState('');
 
-  const handlePrevClick = () => {
-    setCurrentItem((prevItem) => (prevItem === 0 ? posts.length - 1 : prevItem - 1));
-    setTransitionClass('prev');
-  };
+  // const handlePrevClick = () => {
+  //   setCurrentItem((prevItem) => (prevItem === 0 ? posts.length - 1 : prevItem - 1));
+  //   setTransitionClass('prev');
+  // };
 
-  const handleNextClick = () => {
-    setCurrentItem((prevItem) => (prevItem === posts.length - 1 ? 0 : prevItem + 1));
-    setTransitionClass('next');
-  };
+  // const handleNextClick = () => {
+  //   setCurrentItem((prevItem) => (prevItem === posts.length - 1 ? 0 : prevItem + 1));
+  //   setTransitionClass('next');
+  // };
 
-  useEffect(() => {
-    const runAutoRun = setTimeout(() => {
-      handleNextClick();
-    }, 7000);
+  // useEffect(() => {
+  //   const runAutoRun = setTimeout(() => {
+  //     handleNextClick();
+  //   }, 7000);
 
-    return () => clearTimeout(runAutoRun);
-  }, [currentItem]);
+  //   return () => clearTimeout(runAutoRun);
+  // }, [currentItem]);
 
-  const handleTransitionEnd = () => {
-    setTransitionClass(''); // Remove the "prev" or "next" class after the transition ends
-  };
+  // const handleTransitionEnd = () => {
+  //   setTransitionClass(''); // Remove the "prev" or "next" class after the transition ends
+  // };
 
   return (
     // <div className="carousel" onTransitionEnd={handleTransitionEnd}>
