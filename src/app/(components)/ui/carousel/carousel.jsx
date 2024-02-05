@@ -9,13 +9,6 @@ const Carousel = ({ posts }) => {
   const [currentItem, setCurrentItem] = useState(0);
   const [transitionClass, setTransitionClass] = useState('');
 
-  const items = [
-    { imgSrc: "img1.jpg", author: "ABIMBOLA", title: "DESIGN", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
-    { imgSrc: "img2.jpg", author: "ABIMBOLA", title: "DESIGN dd", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
-    { imgSrc: "img3.jpg", author: "ABIMBOLA", title: "DESIGN ddd", topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
-    { imgSrc: "img4.jpg", author: "ABIMBOLA", title: "DESIGN 3r" , topic: "ANIMAL", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit" },
-  ];
-
   const handlePrevClick = () => {
     setCurrentItem((prevItem) => (prevItem === 0 ? posts.length - 1 : prevItem - 1));
     setTransitionClass('prev');
