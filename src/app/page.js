@@ -24,9 +24,9 @@ export default async function Home() {
   // console.log(latestPosts, "latestpostssssssss")
   return (
     <div className='relative min-h-screen'>
-        {/* <div className='w-full h-screen overflow-hidden relative z-[1]'>
+        <div className='w-full h-screen overflow-hidden relative z-[1]'>
           <Carousel posts={ latestPosts }/>
-        </div> */}
+        </div>
       {/* <div>
         <Carousel />
       </div> */}

@@ -41,7 +41,7 @@ const Carousel = ({ posts }) => {
             style={{ transform: `translateX(${100 * (index - currentItem)}%)` }}
           >
             <Image
-            quality={20}
+            quality="20"
             priority
             width={1000}
             height={1000}
@@ -49,7 +49,7 @@ const Carousel = ({ posts }) => {
             blurDataURL='/loader.svg' 
             src={item.image} 
             alt={`Slide ${index + 1}`} 
-            className='!object-cover !w-full !h-screen'/>
+            className='object-cover object-bottom !w-full !h-screen'/>
             <div className="content">
               <div className="author">{item.author.username}</div>
               <div className="title">{item.title}</div>

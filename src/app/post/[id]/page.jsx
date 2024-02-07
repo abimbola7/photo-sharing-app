@@ -40,7 +40,7 @@ const Post = async ({ params }) => {
           <div className="flex flex-wrap space-x-2">
             {
               post?.category?.map((category, index) => (
-                <Link href={`/category/${category}`} key={index} className={`font-medium text-gray-600 dark:text-gray-300 transition-colors duration-200 text-md md:text-lg hover:text-red-500 ${montserrat.className}`}>{category}</Link>
+                <Link href={`/category/${category}`} key={index} className={`font-medium text-gray-600 dark:text-gray-300 transition-all duration-200 text-md md:text-lg hover:!text-red-500 ${montserrat.className}`}>{category}</Link>
               ))
             }
           </div>
