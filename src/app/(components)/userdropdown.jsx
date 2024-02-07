@@ -16,7 +16,7 @@ import {
 import { FaUserCircle } from "react-icons/fa"
 import Link from "next/link"
 import { signOut, useSession } from "next-auth/react"
-import Image from "next/image"
+
 // type Checked = DropdownMenuCheckboxItemProps["checked"]
 
 const UserDropdown = () => {
@@ -29,7 +29,9 @@ const UserDropdown = () => {
       <DropdownMenuTrigger asChild className="cursor-pointer">
           {
             !data ? 
-            <FaUserCircle className='text-xl'/> : 
+            <div className="">
+              <FaUserCircle className='text-xl'/> 
+            </div> :
             <img 
             src={data?.user?.image}
             alt={data?.user?.username}
@@ -40,7 +42,7 @@ const UserDropdown = () => {
       </DropdownMenuTrigger>
       {
         data ? (
-            <DropdownMenuContent className="w-56">
+            <DropdownMenuContent className="w-56 z-[1000]">
                 <DropdownMenuItem 
                 className="py-1 cursor-pointer focus:border-none hover:border-none hover:bg-accent"
                 onClick={()=>router.push(`/artist/${data?.user?.username}`)}
@@ -67,7 +69,7 @@ const UserDropdown = () => {
                 </DropdownMenuItem>
             </DropdownMenuContent>
         ) : (
-          <DropdownMenuContent className="flex flex-col w-56 ">
+          <DropdownMenuContent className="flex flex-col w-56 z-[1000]">
             <Link href="/auth/signin" className="py-1">
               Login
             </Link>

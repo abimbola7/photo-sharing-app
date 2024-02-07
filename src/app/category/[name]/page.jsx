@@ -30,13 +30,13 @@ async function getPosts(name) {
 
 
 const Cat = async ({ params }) => {
-  const { cat } = await getCat(params.name)
+  // const { cat } = await getCat(params.name)
   const posts  = await getPosts(params.name)
   // console.log(posts)
   // console.log(/category)
   return (
     <div>
-      <CatHeader category={cat}/>
+      {/* <CatHeader category={cat}/>
       <div className='max-w-[95%] mx-auto grid grid-cols-1 sm:grid-cols-2 py-10  gap-4'>
         {
           posts.cat && posts.cat.map((post)=>(
@@ -49,7 +49,7 @@ const Cat = async ({ params }) => {
             image={post.image}/>
           ))
         }
-      </div>
+      </div> */}
     </div>
   )
 }

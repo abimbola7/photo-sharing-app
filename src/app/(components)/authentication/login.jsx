@@ -7,6 +7,7 @@ import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { FaRegEye } from "react-icons/fa";
 
 const loginSchema = Yup.object().shape({
   email : Yup.string().email('Invalid Email').required("Required"),
@@ -15,8 +16,12 @@ const loginSchema = Yup.object().shape({
 
 
 const LoginForm = () => {
+  const [ inputType, setInputType ] = React.useState("password")
   const router  = useRouter()
   const [ error, setError ] = React.useState(null);
+  const handlePassword = () => {
+    inputType === "password" ? setInputType("text") : setInputType("password")
+  }
   return (
     <div
     className='mx-auto w-[40rem] max-w-[90%] mt-10'
@@ -70,12 +75,22 @@ const LoginForm = () => {
                   <div className='text-red-700'>{errors.email}</div>
                 ) : null}
               </div>
-              <div>
+              <div className=''>
                 <label>Password</label>
-                <Field name="password"  className="forms"  type="password"/>
-                {errors.password && touched.password ? (
-                  <div className='text-red-700'>{errors.password}</div>
-                ) : null}
+                <div className="relative">
+                  <Field name="password" className="forms relative"  type={inputType}/>
+                  <div 
+                  className="absolute right-2 top-4 z-[1000]"
+                  onClick={handlePassword}
+                  >
+                    <FaRegEye className='text-xl cursor-pointer'/>
+                  </div>
+                </div>
+                  <>
+                    {errors.password && touched.password ? (
+                      <div className='text-red-700'>{errors.password}</div>
+                    ) : null}
+                  </>
               </div>
               {
                 error && <p className="text-red-500">{error}</p>

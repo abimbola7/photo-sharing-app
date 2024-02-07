@@ -50,7 +50,7 @@ const Header = () => {
           />
           {
             isSearch && (
-              <div className="absolute right-0 pr-5 z-[56] flex items-center space-x-2 bg-card justify-center pl-5 py-2 sm:hidden rounded-lg">
+              <div className="absolute right-0 pr-5 z-[1000] flex items-center space-x-2 bg-card justify-center pl-5 py-2 sm:hidden rounded-lg">
                 <SearchBar className="relative sm:hidden"/>
                 <FaTimes 
                 className="text-xl cursor-pointer"

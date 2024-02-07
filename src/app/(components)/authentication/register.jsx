@@ -10,6 +10,7 @@ import { getDownloadURL, ref, uploadString } from 'firebase/storage'
 import { Button } from '@/components/ui/button'
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify'
+import { FaRegEye } from 'react-icons/fa'
 
 const passwordValidator = (message) => {
   return `Your password must have at least 1 ${message} character.`
@@ -34,6 +35,8 @@ const SignupSchema = Yup.object().shape({
 
 
 const RegisterForm = () => {
+  const [ inputType, setInputType ] = React.useState("password")
+  const [ inputType1, setInputType1 ] = React.useState("password")
   const filePickerRef = React.useRef(null);
   const [ selectedFile, setSelectedFile ] = React.useState(null);
   const [ loading, setLoading ] = React.useState(false)
@@ -51,6 +54,14 @@ const RegisterForm = () => {
       setSelectedFile(readerEvent.target.result)
 
     }
+  }
+
+  const handlePassword = () => {
+    inputType === "password" ? setInputType("text") : setInputType("password")
+  }
+
+  const handlePassword1  = () =>  {
+    inputType1 === "password" ? setInputType1("text") : setInputType1("password")
   }
 
   return ( 
@@ -201,12 +212,28 @@ const RegisterForm = () => {
           </div>
           <div>
            <label>Password</label>
-           <Field name="password" type="password" className="forms"/>
+           <div className="relative">
+            <div 
+              className="absolute right-2 top-4 z-[1000]"
+              onClick={handlePassword}
+              >
+                <FaRegEye className='text-xl cursor-pointer'/>
+             </div>
+             <Field name="password" type={inputType} className="forms"/>
+           </div>
            {errors.password && touched.password ? <div className='text-red-700'>{errors.password}</div> : null}
           </div>
           <div>
            <label>Confirm Password</label>
-           <Field name="confirmPassword" type="password" className="forms"/>
+           <div className="relative">
+            <div 
+              className="absolute right-2 top-4 z-[1000]"
+              onClick={handlePassword1}
+              >
+                <FaRegEye className='text-xl cursor-pointer'/>
+             </div>
+              <Field name="confirmPassword" type={inputType1} className="forms"/>
+           </div>
            {errors.confirmPassword && touched.confirmPassword ? <div className='text-red-700'>{errors.confirmPassword}</div> : null}
           </div>
           {
