@@ -5,7 +5,7 @@ import Categories from './(components)/categories'
 
 async function getLatestPosts() {
   try {
-    const res = await fetch('http://localhost:3000/api/latestposts')
+    const res = await fetch('https://photo-sharing-app-iu6c-git-master-abimbola7.vercel.app/api/latestposts')
     if (res.ok) {
       const data =  await res.json()
       return data.latest
