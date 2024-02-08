@@ -3,12 +3,6 @@
 import Image from 'next/image';
 import React from 'react';
 import { Button, Carousel as CC, Typography } from '@material-tailwind/react';
-import Framer from '@/app/(providers)/framer';
-import 'swiper/swiper-bundle.css'; // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 
 const Carousel = ({ posts }) => {
   console.log(posts)
