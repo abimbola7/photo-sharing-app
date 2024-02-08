@@ -1,102 +1,72 @@
 "use client"
-import React, { useState, useEffect } from 'react';
-import "./carousel.css"
-import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
+
 import Image from 'next/image';
+import React from 'react';
+import { Button, Carousel as CC, Typography } from '@material-tailwind/react';
+import Framer from '@/app/(providers)/framer';
+import 'swiper/swiper-bundle.css'; // Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 const Carousel = ({ posts }) => {
   console.log(posts)
-  const [currentItem, setCurrentItem] = useState(0);
-  const [transitionClass, setTransitionClass] = useState('');
-
-  const handlePrevClick = () => {
-    setCurrentItem((prevItem) => (prevItem === 0 ? posts.length - 1 : prevItem - 1));
-    setTransitionClass('prev');
-  };
-
-  const handleNextClick = () => {
-    setCurrentItem((prevItem) => (prevItem === posts.length - 1 ? 0 : prevItem + 1));
-    setTransitionClass('next');
-  };
-
-  useEffect(() => {
-    const runAutoRun = setTimeout(() => {
-      handleNextClick();
-    }, 7000);
-
-    return () => clearTimeout(runAutoRun);
-  }, [currentItem]);
-
-  const handleTransitionEnd = () => {
-    setTransitionClass(''); // Remove the "prev" or "next" class after the transition ends
-  };
-
+  const images = [
+    { id: 1, url: 'https://firebasestorage.googleapis.com/v0/b/photo-sharing-e8864.appspot.com/o/posts%2Ffb48e2e2-7a80-4607-9dc5-08b3a80d070a%2Fimages?alt=media&token=17bf461f-5b2d-41a4-99ca-2e1166ddb944', title: 'Image 1' },
+    { id: 2, url: 'https://firebasestorage.googleapis.com/v0/b/photo-sharing-e8864.appspot.com/o/posts%2F2ab1bc43-4a6b-4ba2-870b-2a9e9736a704%2Fimages?alt=media&token=bae58387-30c5-44d0-a9b8-9b5aeaa3fe85', title: 'Image 2' },
+    { id: 3, url: 'https://firebasestorage.googleapis.com/v0/b/photo-sharing-e8864.appspot.com/o/posts%2F6dee72b0-d33b-49d0-bd9d-8b70ffa99f2b%2Fimages?alt=media&token=3d1e48ef-7ba7-45b8-877e-2b2262d8139d', title: 'Image 3' },
+    { id: 4, url: 'https://firebasestorage.googleapis.com/v0/b/photo-sharing-e8864.appspot.com/o/posts%2F9e095c08-eeae-4246-90e1-8b724daded3d%2Fimages?alt=media&token=6f68fe87-0973-4be9-ad3f-cc60c88e5185', title: 'Image 4' },
+    // Add more images as needed
+  ];
+  
   return (
-    <div className="carousel" onTransitionEnd={handleTransitionEnd}>
-      <div className={`list ${transitionClass}`}>
-        {posts.map((item, index) => (
-          <div
-            key={index}
-            className="item"
-            style={{ transform: `translateX(${100 * (index - currentItem)}%)` }}
-          >
-            <Image
-            quality="20"
-            priority
-            width={1000}
-            height={1000}
-            placeholder='blur'
-            blurDataURL='/loader.svg' 
-            src={item.image} 
-            alt={`Slide ${index + 1}`} 
-            className='object-cover object-bottom !w-full !h-screen'/>
-            <div className="content">
-              <div className="author">{item.author.username}</div>
-              <div className="title">{item.title}</div>
-              <div className="topic">{item.content}</div>
-              {/* <div className="des">{item.description}</div> */}
-              <div className="buttons">
-                <button>SEE MORE</button>
-                <button>SUBSCRIBE</button>
+    <CC
+    loop
+    autoplay
+    autoplayDelay={10000}
+    transition={"spring"}
+    className="opacity-100 overflow-y-hidden"
+    >
+      {
+        posts.map((item)=>(
+          <div className="relative h-full w-full" key={item}>
+          <Image
+          priority
+          fill
+          src={item.image}
+          alt={"alt"}
+          className="h-screen w-full object-cover brightness-75"
+          />
+          <div className="absolute inset-0 grid h-full w-full items-center bg-black/30 pl-3">
+            <div className={`w-3/4 md:w-2/4 text-left relative top-56`}>
+              <Typography
+                variant="h1"
+                color="white"
+                className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+              >
+                {item.title}
+              </Typography>
+              <Typography
+                variant="lead"
+                color="white"
+                className="mb-2 xs:mb-6 opacity-80 text-md sm:text-xl"
+              >
+                {item.content}
+              </Typography>
+              <div className="">
+                <Button
+                className="z-[100000] text-destructive"
+                >
+                  Read More
+                </Button>
               </div>
             </div>
           </div>
-        ))} 
       </div>
-
-      <div className={`thumbnail ${transitionClass}`}>
-        {posts.map((item, index) => (
-          <div
-            key={index}
-            className="transition-transform duration-200 item"
-            style={{ transform: `translateX(${20 * (index - currentItem)}%)` }}
-          >
-            <Image
-            quality="10"
-            width={100}
-            height={100}
-            placeholder='blur'
-            blurDataURL='/loading.svg'
-            src={posts[(index + currentItem) % posts.length].image} 
-            alt={`Thumbnail ${index + 1}`} 
-            />
-            <div className="content">
-              <div className="title">Name Slider</div>
-              <div className="des">Description</div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="arrows">
-        <button id="prev" onClick={handlePrevClick} className="flex items-center justify-center">
-          <ChevronLeftIcon  className="w-8 h-8"/>
-        </button>
-        <button id="next" onClick={handleNextClick} className="flex items-center justify-center">
-          <ChevronRightIcon  className="w-8 h-8"/>
-        </button>
-      </div>
-    </div>
+        ))
+      }
+    </CC>
   );
 };
 
