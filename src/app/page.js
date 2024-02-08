@@ -1,7 +1,5 @@
-import Image from 'next/image'
 import Carousel from './(components)/ui/carousel/carousel'
 import Categories from './(components)/categories'
-import Swipe from './(components)/swiper'
 
 
 
