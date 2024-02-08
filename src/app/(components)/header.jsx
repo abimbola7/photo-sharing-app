@@ -13,18 +13,19 @@ import { SideBar } from './sidebar'
 import SearchBar from './searchbar'
 import { CiSearch } from 'react-icons/ci'
 import { Sheet, SheetTrigger } from '@/components/ui/sheet'
-
+import { usePathname } from 'next/navigation'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 
 const Header = () => {
+  const pathname  = usePathname()
   const { data } = useSession()
   const [ isSearch, setIsSearch ] = React.useState(false)
   console.log(isSearch)
   return (
     <header
-    className={`w-full z-[1000] ${montserrat.className}`}
+    className={`w-full z-[1000] ${montserrat.className} ${pathname === "/" ? "absolute" : "relative"}`}
     >
       <nav
       className='relative flex items-center justify-between max-w-6xl px-2 py-4 mx-auto space-x-4'

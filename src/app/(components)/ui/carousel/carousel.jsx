@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { Button, Carousel as CC, Typography } from '@material-tailwind/react';
+import Link from 'next/link';
 
 const Carousel = ({ posts }) => {
   return (
@@ -40,11 +41,11 @@ const Carousel = ({ posts }) => {
                 {item.content}
               </Typography>
               <div className="">
-                <Button
-                className="z-[100000] text-destructive"
+                <Link href={`/post/${item.title}`}
+                className="z-[100000] text-red-500"
                 >
                   Read More
-                </Button>
+                </Link>
               </div>
             </div>
           </div>
