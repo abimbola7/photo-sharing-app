@@ -25,7 +25,7 @@ export default async function Home() {
   return (
     <div className='relative min-h-screen'>
         <div className='w-full h-screen overflow-hidden relative z-[1]'>
-          <Carousel posts={ latestPosts }/>
+          {/* <Carousel posts={ latestPosts }/> */}
         </div>
       {/* <div>
         <Carousel />
