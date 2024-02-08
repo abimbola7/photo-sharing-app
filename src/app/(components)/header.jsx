@@ -25,7 +25,7 @@ const Header = () => {
   console.log(isSearch)
   return (
     <header
-    className={`w-full z-[1000] ${montserrat.className} ${pathname === "/" ? "absolute" : "relative"}`}
+    className={`w-full z-[10] ${montserrat.className} ${pathname === "/" ? "absolute" : "relative"}`}
     >
       <nav
       className='relative flex items-center justify-between max-w-6xl px-2 py-4 mx-auto space-x-4'
