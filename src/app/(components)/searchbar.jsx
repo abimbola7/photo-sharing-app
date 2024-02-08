@@ -24,7 +24,7 @@ const SearchBar = (props) => {
       value={search}
       onChange={(e)=>setSearch(e.target.value)}
       placeholder="Search..."
-      className="border py-2 px-8 rounded-full focus:outline-none w-48 sm:w-56 duration transition-all focus:56 sm:focus:w-72"/>
+      className={`border py-2 flex-1 px-8 rounded-full focus:outline-none w-48 sm:w-56 duration transition-all focus:56 sm:focus:w-72 ${props.className1}`}/>
     </form>
   )
 }

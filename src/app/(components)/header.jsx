@@ -27,7 +27,21 @@ const Header = () => {
     <header
     className={`w-full z-[10] ${montserrat.className} ${pathname === "/" ? "absolute" : "relative"}`}
     >
-      <nav
+      {
+        isSearch && (
+          <div className="absolute right-0 pr-5 z-[1000] flex items-center space-x-2 bg-card justify-center pl-5 py-3 sm:hidden rounded-lg w-full">
+            <SearchBar 
+            className="relative sm:hidden w-full flex-1 mx-2"
+            className1="w-full flex-1"
+            />
+            <FaTimes 
+            className="text-xl cursor-pointer"
+            onClick={() => setIsSearch(false)}
+            />
+          </div>
+        )
+      }
+      <nav 
       className='relative flex items-center justify-between max-w-6xl px-2 py-4 mx-auto space-x-4'
       >
         <Link href={"/"}>
@@ -49,17 +63,6 @@ const Header = () => {
           className='text-xl cursor-pointer sm:hidden'
           onClick={() => setIsSearch(true)}
           />
-          {
-            isSearch && (
-              <div className="absolute right-0 pr-5 z-[1000] flex items-center space-x-2 bg-card justify-center pl-5 py-2 sm:hidden rounded-lg">
-                <SearchBar className="relative sm:hidden"/>
-                <FaTimes 
-                className="text-xl cursor-pointer"
-                onClick={() => setIsSearch(false)}
-                />
-              </div>
-            )
-          }
           <ModeToggle />
           <AddImage/>
           {data && (
