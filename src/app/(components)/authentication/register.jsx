@@ -10,7 +10,7 @@ import { getDownloadURL, ref, uploadString } from 'firebase/storage'
 import { Button } from '@/components/ui/button'
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify'
-import { FaRegEye } from 'react-icons/fa'
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 
 const passwordValidator = (message) => {
   return `Your password must have at least 1 ${message} character.`
@@ -217,7 +217,9 @@ const RegisterForm = () => {
               className="absolute right-2 top-4 z-[1000]"
               onClick={handlePassword}
               >
-                <FaRegEye className='text-xl cursor-pointer'/>
+                {
+                  inputType === "password" ? <FaRegEye className='text-xl cursor-pointer'/> : <FaRegEyeSlash className='text-xl cursor-pointer'/>
+                }
              </div>
              <Field name="password" type={inputType} className="forms"/>
            </div>
@@ -230,7 +232,9 @@ const RegisterForm = () => {
               className="absolute right-2 top-4 z-[1000]"
               onClick={handlePassword1}
               >
-                <FaRegEye className='text-xl cursor-pointer'/>
+                {
+                  inputType1 === "password" ? <FaRegEye className='text-xl cursor-pointer'/> : <FaRegEyeSlash className='text-xl cursor-pointer'/>
+                }
              </div>
               <Field name="confirmPassword" type={inputType1} className="forms"/>
            </div>

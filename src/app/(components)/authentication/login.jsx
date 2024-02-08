@@ -7,7 +7,7 @@ import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { FaRegEye } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const loginSchema = Yup.object().shape({
   email : Yup.string().email('Invalid Email').required("Required"),
@@ -83,7 +83,9 @@ const LoginForm = () => {
                   className="absolute right-2 top-4 z-[1000]"
                   onClick={handlePassword}
                   >
-                    <FaRegEye className='text-xl cursor-pointer'/>
+                    {
+                      inputType === "password" ? <FaRegEye className='text-xl cursor-pointer'/> : <FaRegEyeSlash className='text-xl cursor-pointer'/>
+                    }
                   </div>
                 </div>
                   <>
