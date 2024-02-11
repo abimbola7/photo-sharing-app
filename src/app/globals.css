@@ -6,8 +6,8 @@ body {
   background: url(/noise.51a05f55.png);
   background-size: 200px 200px;
   background-position: 0 0;
+  background-attachment: fixed;
   overflow-x: hidden;
-  
 }
 
 html::-webkit-scrollbar {
