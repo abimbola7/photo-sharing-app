@@ -18,7 +18,6 @@ import { FaRegComment } from "react-icons/fa6";
 export const montserrat = Montserrat({ subsets: ['latin'] })
 
 const getPostByName = async (id) => {
-  console.log(id, "IDddd")
   const res = await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/posts/${id}`, {
     cache: "no-store"
   })
@@ -40,7 +39,7 @@ const Post = async ({ params }) => {
           <div className="flex flex-wrap space-x-2">
             {
               post?.category?.map((category, index) => (
-                <Link href={`/category/${category}`} key={index} className={`font-medium text-gray-600 dark:text-gray-300 transition-all duration-200 text-md md:text-lg hover:!text-red-500 ${montserrat.className}`}>{category}</Link>
+                <Link href={`/category/${category}`} key={index} className={`font-medium text-gray-600 dark:text-gray-300 transition-all duration-200 text-md md:text-lg hover:!text-destructive ${montserrat.className}`}>{category}</Link>
               ))
             }
           </div>
@@ -48,8 +47,8 @@ const Post = async ({ params }) => {
             <DeleteDropdown id={post._id} username={post.author.username}/>
           </div>
         </div>
-        <h1 className='mt-3 font-bold sm:text-2xl lg:text-4xl'>{post?.title}</h1>
-        <p className={`my-8 text-lg ${montserrat.className}`}>{post?.content}</p>
+        <h1 className='mt-3 font-bold sm:text-2xl lg:text-4xl text-destructive'>{post?.title}</h1>
+        <p className={`my-4 text-lg ${montserrat.className}`}>{post?.content}</p>
         <Image 
         src={post?.image} 
         width={1000} 

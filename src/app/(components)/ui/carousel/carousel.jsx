@@ -5,7 +5,28 @@ import React from 'react';
 import { Button, Carousel as CC, Typography } from '@material-tailwind/react';
 import Link from 'next/link';
 
-const Carousel = ({ posts }) => {
+const Carousel = () => {
+  const [ latestPosts, setLatestPosts ] = React.useState(null);
+  const getLatestPosts = async () => {
+    try {
+      const res = await fetch("/api/latestposts", {
+        cache: "no-store",
+        method : "GET"
+      })
+      if (res.ok) {
+        const data =  await res.json()
+        console.log(data.latest)
+        setLatestPosts(data.latest)
+      }
+    }catch(error){
+      console.log(error)
+    }
+  };
+
+  React.useEffect(()=>{
+    getLatestPosts()
+  }, []);
+
   return (
     <CC
     loop
@@ -15,7 +36,7 @@ const Carousel = ({ posts }) => {
     className="opacity-100 overflow-y-hidden"
     >
       {
-        posts.map((item)=>(
+        latestPosts?.map((item)=>(
           <div className="relative h-full w-full" key={item}>
           <Image
           priority
