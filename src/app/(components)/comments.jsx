@@ -72,7 +72,7 @@ const Comments = ({ id, valComment }) => {
   // console.log(upComment, "COMMENTS")
 
   return (
-    <div className='max-w-7xl mx-auto py-10 rounded-md p-2'>
+    <div className='max-w-7xl mx-auto py-5 rounded-md p-2'>
       {/* comments */}
       <div className={`p-1 sm:p-4 rounded-md mb-10 max-w-4xl mx-auto space-y-4 ${montserrat.className}`}>
       <p className='text-center font-semibold text-xl'>Comments</p>

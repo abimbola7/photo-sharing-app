@@ -94,7 +94,7 @@ const Post = async ({ params }) => {
 
       <Comments id={post?._id} />
 
-      <div className='p-3 mx-auto mt-16 mb-10 rounded-lg max-w-7xl bg-card '>
+      <div className='p-3 mx-auto mt-3 mb-10 rounded-lg max-w-7xl bg-card'>
         <h1 className="text-2xl font-semibold text-center uppercase">Related Posts</h1>
         <RelatedPosts categories={post?.category} id={post?._id}/>
       </div>
