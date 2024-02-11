@@ -99,7 +99,7 @@ const LoginForm = () => {
               }
               <button type="submit" disabled={isSubmitting}  className='w-full py-2 mt-2 text-center text-white bg-destructive rounded-md focus:outline-none disabled:bg-destructive/50'>Submit</button>
               <p className='tect-center'>
-                Don&apos;t have an account? <Link href="/auth/signin" className='text-red-500'>Register</Link>
+                Don&apos;t have an account? <Link href="/register" className='text-red-500'>Register</Link>
               </p>
             </Form>
           )
