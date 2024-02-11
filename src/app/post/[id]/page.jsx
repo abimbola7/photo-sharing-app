@@ -68,9 +68,13 @@ const Post = async ({ params }) => {
         <div className={`flex flex-row flex-wrap gap-2 mt-5 ${montserrat.className}`}>
           {
             post?.tags?.map((tag, index) => (
-              <div className="flex items-center justify-center px-5 py-1 border rounded-full cursor-pointer border-destructive" key={index}>
+              <Link
+              href={`/search?search=${tag}`}
+              key={index}
+              className="flex items-center justify-center px-5 py-1 border rounded-full cursor-pointer border-destructive" 
+              >
                 <p className="text-sm">{ tag }</p>
-              </div>
+              </Link>
             ))
           }
         </div>
