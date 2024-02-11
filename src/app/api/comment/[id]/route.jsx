@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export async function GET(req, { params }){
   console.log(params.id)
   const { id } = params;
-  const comments = await Post.findOne({ _id : id }, { comments : 1  })
+  const comments = await Post.findOne({ _id : id }, { comments : 1  }).sort({createdAt: -1})
   console.log(comments, "COMMENTS")
   return NextResponse.json({ comments }, { status : 200 })
 }
