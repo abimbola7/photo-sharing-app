@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { Post } from "@/app/(models)/user";
 
-export async function GET(req) {
+export async function GET(request) {
+  console.log(request)
   try {
     const latest  = await Post.find().sort({createdAt: -1})
     // .limit(5)
