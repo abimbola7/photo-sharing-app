@@ -11,3 +11,5 @@ export async function GET(request) {
     return NextResponse.json({ message : error }, { status : 500 })
   }
 }
+
+export const revalidate = 10;
