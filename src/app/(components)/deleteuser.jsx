@@ -42,7 +42,7 @@ const DeleteUser = ({ username, id }) => {
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription className="space-y-1">
-                  <span>Are you sure you want to delete your comment. </span>
+                  <span>Are you sure you want to delete your account? </span>
                   <span>Deleting your account will permanently remove all of your information, including your posts and comments. This action cannot be undone.</span>
                 </AlertDialogDescription>
               </AlertDialogHeader>
