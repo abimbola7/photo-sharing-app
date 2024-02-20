@@ -44,7 +44,7 @@ const RegisterForm = () => {
   const router = useRouter();
   const [ error, setError ] = React.useState(null)
   const addImageToPost = (e) => {
-    console.log(e.target.files[0])
+    // console.log(e.target.files[0])
     const reader = new FileReader();
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
@@ -123,7 +123,7 @@ const RegisterForm = () => {
       }}
       validationSchema={SignupSchema}
       onSubmit={async (values) => {
-        console.log(values)
+        // console.log(values)
         setError(null)
         try {
           const user = {
@@ -138,7 +138,7 @@ const RegisterForm = () => {
             body : JSON.stringify({user})
           })
           const { errors, message } = await resUserExists.json()
-          console.log(errors, message);
+          // console.log(errors, message);
           if (errors.username || errors.email) {
             setError(`${ errors.username || errors.email }`)
             return;
@@ -152,9 +152,9 @@ const RegisterForm = () => {
           setLoading(true);
           const imageRef = ref(storage, `avatars/${uuidv4()}/images`);
           await uploadString(imageRef, selectedFile, "data_url").then(async snapshot => {
-            console.log(snapshot)
+            // console.log(snapshot)
             downloadURL = await getDownloadURL(imageRef);
-            console.log(downloadURL)
+            // console.log(downloadURL)
             setAvatarUrl(downloadURL)
           })
         } catch (error) {
@@ -164,7 +164,7 @@ const RegisterForm = () => {
         setLoading(false);
 
         try {
-          console.log(downloadURL)
+          // console.log(downloadURL)
           const res  = await fetch("/api/register", {
             method : "POST",
             headers : {
@@ -178,7 +178,7 @@ const RegisterForm = () => {
             })
           })
           if (res.ok) {
-            console.log("okay")
+            // console.log("okay")
             toast('Registration Successful!', {
             position: "top-right",
             autoClose: 5000,

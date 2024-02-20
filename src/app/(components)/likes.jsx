@@ -24,7 +24,7 @@ const Likes = ({ id }) => {
         })
       })
       if (res.ok) {
-        console.log("delete okay")
+        // console.log("delete okay")
       }
     } else {
       const res = await fetch(`/api/likes/${id}`, {
@@ -37,7 +37,7 @@ const Likes = ({ id }) => {
         })
       })
       if (res.ok) {
-        console.log("delete okay")
+        // console.log("delete okay")
       }
     }
     fetchLikes()
@@ -46,7 +46,7 @@ const Likes = ({ id }) => {
   const fetchLikes = async ()=> {
     const res = await fetch(`/api/likes/${id}`)
     if (res.ok) {
-      console.log("okay")
+      // console.log("okay")
       let { likes } = await res.json()
       setLike(likes.likes)
     }

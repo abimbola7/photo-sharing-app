@@ -8,9 +8,9 @@ import React from 'react'
 import { FaTrash } from 'react-icons/fa'
 
 const DeleteComment = ({ id, handComment }) => {
-  console.log(id, "comment id")
+  // console.log(id, "comment id")
   const handleComment = () => {
-    console.log(id)
+    // console.log(id)
     handComment(id)
   }
   return (

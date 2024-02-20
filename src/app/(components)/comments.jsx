@@ -31,7 +31,7 @@ const Comments = ({ id, valComment }) => {
       })
     })
     if (res.ok) {
-      console.log("comment okay")
+      // console.log("comment okay")
     }
     fetchComments()
     setComments("")
@@ -40,14 +40,14 @@ const Comments = ({ id, valComment }) => {
   const fetchComments = async ()=> {
     const res = await fetch(`/api/comment/${id}`)
     if (res.ok) {
-      console.log("okay")
+      // console.log("okay")
       let { comments } = await res.json()
       setUpComment(comments.comments)
     }
   }
 
   const handleDelete = async (commentId) => {
-    console.log(commentId, id, "handle")
+    // console.log(commentId, id, "handle")
     const res = await fetch(`/api/comment/${commentId}`, {
       method : "DELETE",
       headers : {
@@ -58,12 +58,12 @@ const Comments = ({ id, valComment }) => {
       })
     })
     if (res.ok) {
-      console.log("delete okay")
+      // console.log("delete okay")
     }
     fetchComments()
   }
   
-  console.log(upComment)
+  // console.log(upComment)
 
   React.useEffect(()=>{
     fetchComments()

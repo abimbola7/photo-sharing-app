@@ -35,14 +35,14 @@ const LoginForm = () => {
       validationSchema={loginSchema}
       onSubmit={async (values) => {
         setError(null)
-        console.log(values)
+        // console.log(values)
         const email = values.email
         const password = values.password
         try {
           const res = await signIn('credentials', {
           email, password , redirect : false
           })
-          console.log(res);
+          // console.log(res);
           if (res.error) {
             setError("Invalid credentials")
             return;

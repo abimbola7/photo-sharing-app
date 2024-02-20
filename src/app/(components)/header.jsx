@@ -22,7 +22,7 @@ const Header = () => {
   const pathname  = usePathname()
   const { data } = useSession()
   const [ isSearch, setIsSearch ] = React.useState(false)
-  console.log(isSearch)
+  // console.log(isSearch)
   return (
     <header
     className={`w-full z-[10] ${montserrat.className} ${pathname === "/" ? "absolute" : "relative"}`}

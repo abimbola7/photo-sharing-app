@@ -9,7 +9,7 @@ import { useSession } from 'next-auth/react';
 
 const DeleteUser = ({ username, id }) => {
   const { data } = useSession()
-  console.log(id, data?.user?.id);
+  // console.log(id, data?.user?.id);
   const [ isLoading, setIsLoading ] = React.useState(false);
   const router = useRouter();
   const handleUser = async () => {

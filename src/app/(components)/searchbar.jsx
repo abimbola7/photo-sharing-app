@@ -11,7 +11,7 @@ const SearchBar = (props) => {
   const handleSearch = (e) => {
     e.preventDefault();
     router.push(`/search?search=${search}`);
-    console.log(search);
+    // console.log(search);
   }
   return (
     <form 

@@ -18,15 +18,15 @@ const EditImage = ({ avatar, name }) => {
   const fetchAvatar = async () => {
     const res = await fetch(`/api/image/${name}`)
     if (res.ok) {
-      console.log("okay")
+      // console.log("okay")
       let { avatar } = await res.json()
       setFetchedAvatar(avatar.avatar)
-      console.log(avatar)
+      // console.log(avatar)
     }
   }
 
   const handleImage = (e) => {
-    console.log("jajajaja")
+    // console.log("jajajaja")
     const reader = new FileReader()
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0])
@@ -35,7 +35,7 @@ const EditImage = ({ avatar, name }) => {
       let selectedFile
       setSelectedImage(readerEvent.target.result)
       selectedFile = readerEvent.target.result 
-      console.log(selectedFile)
+      // console.log(selectedFile)
       let downloadURL
       try {
         if (isLoading) return;
@@ -43,7 +43,7 @@ const EditImage = ({ avatar, name }) => {
         const imageRef = ref(storage, `avatar/${uuidv4()}/images`);
         await uploadString(imageRef, selectedFile, "data_url").then(async snapshot => {
           downloadURL = await getDownloadURL(imageRef);
-          console.log(downloadURL)
+          // console.log(downloadURL)
         })
       } catch (error) {
         throw new Error("Problem uploading image")
@@ -60,7 +60,7 @@ const EditImage = ({ avatar, name }) => {
         })
       })
       if (res.ok) {
-        console.log("delete okay")
+        // console.log("delete okay")
       }
       fetchAvatar()
       setIsLoading(false)

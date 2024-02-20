@@ -15,7 +15,7 @@ const Carousel = () => {
       })
       if (res.ok) {
         const data =  await res.json()
-        console.log(data.latest)
+        // console.log(data.latest)
         setLatestPosts(data.latest)
       }
     }catch(error){

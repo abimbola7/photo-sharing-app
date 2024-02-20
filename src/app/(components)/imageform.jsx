@@ -34,7 +34,7 @@ const ImageForm = ({ categories }) => {
   const [ loading, setLoading ] = React.useState(false);
 
   const tagHandler = (e) => {
-    console.log(e.code)
+    // console.log(e.code)
     if (e.code === "Space" || e.target.value.includes(" ")){
       if (value.trim() === "") return
       const pickedTag = tags.find(tag=>tag === value.trim())
@@ -45,7 +45,7 @@ const ImageForm = ({ categories }) => {
   }
   
   const tagHandler1 = (e) => {
-    console.log(e.code)
+    // console.log(e.code)
     if (document.activeElement.value.includes(" ")){
       if (value.trim() === "") return
       const pickedTag = tags.find(tag=>tag === value.trim())
@@ -109,7 +109,7 @@ const ImageForm = ({ categories }) => {
           tags : tags,
           createdAt : new Date()
         }
-        console.log(post, downloadURL)
+        // console.log(post, downloadURL)
         try {
           const res = await fetch("/api/posts", {
             method : "POST",
@@ -121,7 +121,7 @@ const ImageForm = ({ categories }) => {
             })
           })
           if (res.ok) {
-            console.log("okay");
+            // console.log("okay");
             router.push("/")
           } else {
             throw new Error("JAJAJAJAJAJAJAJAJA")

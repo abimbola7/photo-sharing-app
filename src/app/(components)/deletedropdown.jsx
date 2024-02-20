@@ -20,7 +20,7 @@ const DeleteDropdown = ({ id, username }) => {
       },
     })
     if (res.ok) {
-      console.log("delete okay")
+      // console.log("delete okay")
       router.push("/")
     }
   }

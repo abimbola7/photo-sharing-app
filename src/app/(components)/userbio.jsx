@@ -9,7 +9,7 @@ import { FaUserAstronaut } from "react-icons/fa";
 
 
 const UserBio = ({ id, name }) => {
-  console.log(id);
+  // console.log(id);
   const [ biog, setBiog ] = React.useState("")
   const [ content, setContent ] = React.useState("")
   const [ editMode, setEditMode ] = React.useState(false)
@@ -18,7 +18,7 @@ const UserBio = ({ id, name }) => {
 
   const handleBio = async () => {
     setIsEditing(true)
-    console.log(data?.user?.id)
+    // console.log(data?.user?.id)
     const res = await fetch(`/api/artist/${data?.user?.id}`, {
       method : "PUT",
       headers : {
@@ -29,7 +29,7 @@ const UserBio = ({ id, name }) => {
       })
     })
     if (res.ok) {
-      console.log("delete okay")
+      // console.log("delete okay")
     }
     fetchBio()
     setEditMode(prevState=>!prevState)
@@ -37,16 +37,16 @@ const UserBio = ({ id, name }) => {
   }
 
   const fetchBio = async () => {
-    console.log(name, "name")
+    // console.log(name, "name")
     const res = await fetch(`/api/artist/${name}`, {
       cache: "no-store"
     })
-    console.log(res.ok)
+    // console.log(res.ok)
     if (!res.ok) {
       throw new Error("Failed to get Post")
     }
     const { post: bio} = await res.json();
-    console.log(bio)
+    // console.log(bio)
     setBiog(bio.bio)
   }
   React.useEffect(()=>{

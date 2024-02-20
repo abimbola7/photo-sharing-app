@@ -9,7 +9,7 @@ const CommentsCount = ({ name }) => {
         cache : "no-store"
       })
       const { commentCount }  = await res.json()
-      console.log(commentCount, "TOTAL LIKES")
+      // console.log(commentCount, "TOTAL LIKES")
       setTotalComments(commentCount[0].totalComments)
 
       

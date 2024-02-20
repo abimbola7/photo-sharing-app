@@ -20,7 +20,7 @@ const getCategories = async () => {
 
 const Categories = async () => {
   const { cat } = await getCategories()
-  console.log(cat, "CATTTTTTTTTTTTTTTTT")
+  // console.log(cat, "CATTTTTTTTTTTTTTTTT")
   return (
     <div className='max-w-[95%] py-10 w-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
       {
