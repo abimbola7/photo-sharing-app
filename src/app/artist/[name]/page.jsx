@@ -7,6 +7,7 @@ import LikesCount from '@/app/(components)/likescount'
 import Post from '@/app/(components)/post'
 import UserBio from '@/app/(components)/userbio'
 import { Post as PP } from '@/app/(models)/user'
+import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import React from 'react'
 import { IoIosCheckmarkCircle } from 'react-icons/io'
@@ -91,19 +92,31 @@ const ArtistPage = async ({ params }) => {
         <h1 className='text-2xl font-semibold text-center uppercase'>POSTS</h1>
       </div>
 
-      <div className='max-w-[95%] grid grid-cols-1 sm:grid-cols-2 py-4 gap-4 mx-auto'>
-        {
-          posts && posts.map((post, idx)=>(
-            <Post
-            key={idx} 
-            title={post.title} 
-            name={post.author.username}
-            avatar={post.author.avatar}
-            createdAt={post.createdAt} 
-            image={post.image}/>
-          ))
-        } 
-      </div>
+      {
+        posts.length > 0 ? (
+          <div className='max-w-[95%] grid grid-cols-1 sm:grid-cols-2 py-4 gap-4 mx-auto'>
+            {
+              posts && posts.map((post, idx)=>(
+                <Post
+                key={idx} 
+                title={post.title} 
+                name={post.author.username}
+                avatar={post.author.avatar}
+                createdAt={post.createdAt} 
+                image={post.image}/>
+              ))
+            } 
+          </div>
+        ) : (
+          <div className="text-center mt-5">
+            <Button size="lg" className="bg-destructive text-white" asChild>
+              <Link href="/submit-image">
+                Add Post
+              </Link>
+            </Button>
+            </div>
+        )
+      }
     </div>
   )
 }
