@@ -54,7 +54,7 @@ const UserBio = ({ id, name }) => {
   },[])
   
   return (
-    <div className={`absolute top-0 right-0 p-2 z-50 opacity-0 duration-200 transition-all group-hover:opacity-100`}>
+    <div className={``}>
       <Dialog>
         <DialogTrigger asChild onClick={()=>setEditMode(false)}>
           <Button variant="outline" asChild size="icon" className="cursor-pointer">
@@ -66,7 +66,7 @@ const UserBio = ({ id, name }) => {
             <DialogTitle className="text-center">Bio</DialogTitle>
             {
               !editMode ? (
-              <DialogDescription className="mt-5 text-center py-2">
+              <DialogDescription className="py-2 mt-5 text-center">
                 {biog}
               </DialogDescription>
               ) : (

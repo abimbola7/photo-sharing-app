@@ -1,6 +1,7 @@
 
 
 import CommentsCount from '@/app/(components)/commentscount'
+import DeleteUser from '@/app/(components)/deleteuser'
 import EditImage from '@/app/(components)/editimage'
 import LikesCount from '@/app/(components)/likescount'
 import Post from '@/app/(components)/post'
@@ -61,7 +62,10 @@ const ArtistPage = async ({ params }) => {
     <div className='w-full'>
       <div className="relative group">
         <img src="/images/main.jpg" alt="img" className='object-cover object-center w-full h-96 brightness-75'/>
-        <UserBio name={artist.username} id={artist._id}/>
+        <div className="absolute top-0 right-0 z-50 flex flex-row items-center p-2 space-x-3 transition-all duration-200 opacity-0 group-hover:opacity-100">
+          <UserBio name={artist.username} id={artist._id}/>
+          <DeleteUser username={artist.username} id={artist._id}/>
+        </div>
         <div className="absolute bottom-0 left-0 flex flex-col items-center justify-center w-full h-full">
           <div className="flex flex-col items-center justify-center">
             <EditImage avatar={artist.avatar} name={artist.username}/>
@@ -72,8 +76,8 @@ const ArtistPage = async ({ params }) => {
           </div>
           <div className="flex flex-col items-center w-full p-1 mt-2 bg-card">
             <div className='flex items-center justify-center'>
-              <div className="flex flex-col border-r p-2">
-                <p className="text-lg sm:text-2xl font-bold text-center">{ posts.length}</p>
+              <div className="flex flex-col p-2 border-r">
+                <p className="text-lg font-bold text-center sm:text-2xl">{ posts.length}</p>
                 <p className="text-md sm:text-xl font-semibold text-gray-400 !block uppercase">posts</p>
               </div>
               <LikesCount name={artist.username}/>
