@@ -1,5 +1,3 @@
-
-
 import CommentsCount from '@/app/(components)/commentscount'
 import DeleteUser from '@/app/(components)/deleteuser'
 import EditImage from '@/app/(components)/editimage'
@@ -25,23 +23,12 @@ const getRelatedPost = async (name) => {
   }
 }
 
-async function getCat(name) {
-  try {
-    const res =  await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/artist?artist=${name}`, {
-      cache : "no-store"
-    })
-    return res.json()
-  } catch (error) {
-    console.log(error)
-  }
-}
-
 
 
 
 const getArtist = async (name) => {
   // console.log(name, "name")
-  const res = await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/artist/${name}`, {
+  const res = await fetch(`https://art-nook.vercel.app/api/artist/${name}`, {
     cache: "no-store"
   })
   console.log(res.ok)
@@ -55,10 +42,8 @@ const getArtist = async (name) => {
 
 
 const ArtistPage = async ({ params }) => {
-  const { cat } = await getCat(params.name)
   const { post : artist } = await getArtist(params.name)
   const posts = await getRelatedPost(params.name)
-  // console.log(posts, "POSTSSSS")
   return (
     <div className='w-full'>
       <div className="relative group">

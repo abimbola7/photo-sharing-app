@@ -9,7 +9,7 @@ const montserrat = Montserrat({ subsets: ['latin'] })
 const getSearchs = async (search) => {
   try {
     console.log("dddddd")
-    const res =  await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/search/${search}`, {
+    const res =  await fetch(`https://art-nook.vercel.app/api/search/${search}`, {
       cache : "no-store"
     })
     if (!res.ok) {

@@ -18,7 +18,7 @@ import { FaRegComment } from "react-icons/fa6";
 export const montserrat = Montserrat({ subsets: ['latin'] })
 
 const getPostByName = async (id) => {
-  const res = await fetch(`https://photo-sharing-app-iu6c.vercel.app/api/posts/${id}`, {
+  const res = await fetch(`https://art-nook.vercel.app/api/posts/${id}`, {
     cache: "no-store"
   })
   console.log(res.ok)
