@@ -13,8 +13,6 @@ const getCategories = async () => {
   } catch (error) {
     console.log(error)
   }
-  // const res = await fetch("https://api.openweathermap.org/data/2.5/weather?units=metric&q=bangalore&lat={lat}&lon={lon}&appid=b0b4fae649578d53b33655051af6dd3e")  
-  // return res.json()
 }
 
 
